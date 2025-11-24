@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Optica Manager</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" routerLink="home"> Home </a>
+                </li>
+
+                <li class="nav-item" ngbDropdown>
+					<a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdownManagement" role="button">Cadastros</a>
+					<div ngbDropdownMenu aria-labelledby="navbarDropdownManagement" class="dropdown-menu">
+						<a ngbDropdownItem (click)="$event.preventDefault()" routerLink="sale">Vendas</a>
+						<a ngbDropdownItem (click)="$event.preventDefault()" routerLink="client">Clientes</a>
+                        <hr class="dropdown-divider">
+                        <a ngbDropdownItem (click)="$event.preventDefault()" routerLink="user">Usuário</a>
+					</div>
+				</li>
+
+                <li class="nav-item" ngbDropdown>
+					<a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdownInventory" role="button">Estoque</a>
+					<div ngbDropdownMenu aria-labelledby="navbarDropdownInventory" class="dropdown-menu">
+						<a ngbDropdownItem (click)="$event.preventDefault()" routerLink="frame">Armações</a>
+						<a ngbDropdownItem (click)="$event.preventDefault()" routerLink="lens">Lentes</a>
+					</div>
+				</li>
+
+                <li class="nav-item" ngbDropdown>
+					<a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdownHistory" role="button">Histórico</a>
+					<div ngbDropdownMenu aria-labelledby="navbarDropdownHistory" class="dropdown-menu">
+						<a ngbDropdownItem (click)="$event.preventDefault()" routerLink="sale-history">Vendas</a>
+						<a ngbDropdownItem (click)="$event.preventDefault()" routerLink="client-history">Clientes</a>
+					</div>
+				</li>
+            </ul>
+            <div class="d-flex" role="logout">
+                <div class="my-auto me-4">
+                    <span class="fw-bold me-2">{{getRealName()}}</span>
+                    @if (isAdmin()){
+                        <span>(admin)</span>
+                    }
+                </div>
+                <button class="btn btn-outline-secondary" type="submit" (click)="logout()">Sair</button>
+            </div>
+        </div>
+    </div>
+</nav>
