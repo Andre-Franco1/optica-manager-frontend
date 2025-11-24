@@ -8,48 +8,43 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Gerenciamentos
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/prototype/pages/sales.html">Cadastrar Vendas</a></li>
-                        <li><a class="dropdown-item" href="/prototype/pages/clients.html">Cadastrar Clientes</a></li>                        
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Cadastrar Usuários</a></li>
-                    </ul>
+                    <a class="nav-link" aria-current="page" routerLink="home"> Home </a>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Estoque
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Armações</a></li>
-                    </ul>
-                </li>
+                <li class="nav-item" ngbDropdown>
+					<a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdownManagement" role="button">Cadastros</a>
+					<div ngbDropdownMenu aria-labelledby="navbarDropdownManagement" class="dropdown-menu">
+						<a ngbDropdownItem (click)="$event.preventDefault()" routerLink="sale">Vendas</a>
+						<a ngbDropdownItem (click)="$event.preventDefault()" routerLink="client">Clientes</a>
+                        <hr class="dropdown-divider">
+                        <a ngbDropdownItem (click)="$event.preventDefault()" routerLink="user">Usuário</a>
+					</div>
+				</li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Histórico
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Histórico de Vendas</a></li>
-                        <li><a class="dropdown-item" href="#">Histórico de Clientes</a></li>
-                    </ul>
-                </li>
+                <li class="nav-item" ngbDropdown>
+					<a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdownInventory" role="button">Estoque</a>
+					<div ngbDropdownMenu aria-labelledby="navbarDropdownInventory" class="dropdown-menu">
+						<a ngbDropdownItem (click)="$event.preventDefault()" routerLink="frame">Armações</a>
+						<a ngbDropdownItem (click)="$event.preventDefault()" routerLink="lens">Lentes</a>
+					</div>
+				</li>
 
+                <li class="nav-item" ngbDropdown>
+					<a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdownHistory" role="button">Histórico</a>
+					<div ngbDropdownMenu aria-labelledby="navbarDropdownHistory" class="dropdown-menu">
+						<a ngbDropdownItem (click)="$event.preventDefault()" routerLink="sale-history">Vendas</a>
+						<a ngbDropdownItem (click)="$event.preventDefault()" routerLink="client-history">Clientes</a>
+					</div>
+				</li>
             </ul>
             <div class="d-flex" role="logout">
                 <div class="my-auto me-4">
-                    Usuário: <span class="fw-bold">Alessandro</span>
+                    <span class="fw-bold me-2">{{getRealName()}}</span>
+                    @if (isAdmin()){
+                        <span>(admin)</span>
+                    }
                 </div>
-                <button class="btn btn-outline-secondary" type="submit">Sair</button>
+                <button class="btn btn-outline-secondary" type="submit" (click)="logout()">Sair</button>
             </div>
         </div>
     </div>
