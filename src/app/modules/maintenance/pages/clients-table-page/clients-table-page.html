@@ -1,0 +1,43 @@
+<div class="container text-center">
+    <div class="display-6">
+        Lista de Clientes:
+    </div>
+    <div class="border rounded shadow-sm p-4">
+        <div class="text-start">
+            <a href="/prototype/pages/client.html" class="btn btn-primary">Cadastrar Cliente</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"><input class="form-control text-center" [(ngModel)]="nameFilter" (keyup)="filterByName()" placeholder="Filtrar por nome"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (client of clients; track client.id){
+                <tr>
+                    <th scope="row">{{client.id}}</th>
+                    <td>{{client.name}}</td>
+                    <td>{{client.cpf}}</td>
+                    <td>{{client.phone}}</td>
+                    <td >
+                        <img src="/assets/pencil-fill.svg" width="20" height="20" alt="editar">
+                        <img src="/assets/trash3-fill.svg" width="20" height="20" alt="deletar" (click)="delete(client)">
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
