@@ -1,0 +1,6 @@
+{
+    "clients":[
+        { "id": 1, "name": "Maria Lucia", "cpf": "437.425.430-75", "phone": "11 99705-3212"},
+        { "id": 2, "name": "Pedro Lucas Silva", "cpf": "851.849.700-02", "phone": "11 99721-5454"}
+    ]
+}
