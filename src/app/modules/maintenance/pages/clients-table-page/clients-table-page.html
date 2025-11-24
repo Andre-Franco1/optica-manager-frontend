@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                @for (client of clients; track client.id){
+                @for (client of clientPage.content; track client.id){
                 <tr>
                     <th scope="row">{{client.id}}</th>
                     <td>{{client.name}}</td>
@@ -38,6 +38,8 @@
                 }
             </tbody>
         </table>
-    </div>
 
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="clientPage.numberOfElements" [(page)]="page" [boundaryLinks]="true" (pageChange)="pageChange()" />
+
+    </div>
 </div>

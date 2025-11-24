@@ -2,10 +2,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ClientService } from '../../../../core/services/client';
 import { Client } from '../../../../core/models/client';
 import { FormsModule } from '@angular/forms';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { Page } from '../../../../core/models/page';
 
 @Component({
   selector: 'app-clients-table-page',
-  imports: [FormsModule],
+  imports: [FormsModule, NgbPaginationModule],
   templateUrl: './clients-table-page.html',
   styleUrl: './clients-table-page.css',
 })
@@ -13,7 +15,9 @@ export class ClientsTablePageComponent implements OnInit {
 
   private clientService = inject(ClientService);
 
-  clients: Client[] = [];
+  clientPage: Page<Client> = {} as Page<Client>;
+  page = 1;
+
   nameFilter: string = "";
 
   ngOnInit(): void {
@@ -21,9 +25,16 @@ export class ClientsTablePageComponent implements OnInit {
   }
 
   loadClients() {
-    this.clientService.getClients(this.nameFilter).subscribe({
-      next: clients => this.clients = clients
+    this.clientService.getClients(this.nameFilter, this.page).subscribe({
+      next: response => {
+        this.clientPage.content = response.body;
+        this.clientPage.numberOfElements = parseInt(response.headers.get("X-Total-Count") || "0");
+      }
     });
+  }
+
+  pageChange(){
+    this.loadClients();    
   }
 
   filterByName(){
@@ -33,7 +44,7 @@ export class ClientsTablePageComponent implements OnInit {
   delete(client: Client){
     this.clientService.delete(client).subscribe({
       next: () => {
-        this.clients = this.clients.filter(c => c.id !== client.id)
+        this.loadClients();
       },
       error: () => {
         alert("Erro ao remover o cliente");
