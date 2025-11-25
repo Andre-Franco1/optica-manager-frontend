@@ -1,0 +1,14 @@
+@for (toast of toastService.toasts(); track toast) {
+    <ngb-toast
+        class="p-2 text-center"
+        [class]="toast.classname"
+        [autohide]="true"
+        [delay]="toast.delay || 5000"
+        (hidden)="toastService.remove(toast)">
+
+    <h6>
+        {{toast.text}}
+    </h6>
+    
+    </ngb-toast>
+}
