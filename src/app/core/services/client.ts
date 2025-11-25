@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Client } from '../models/client';
 
@@ -12,9 +12,9 @@ export class ClientService {
 
   private http = inject(HttpClient);
 
-  getClients(clientNameFilter:string):Observable<Client[]>{
-    let url = `${this.baseUrl}?name_like=${clientNameFilter}`
-    return this.http.get<Client[]>(url);
+  getClients(clientNameFilter:string, page: number):Observable<HttpResponse<Client[]>>{
+    let url = `${this.baseUrl}?name_like=${clientNameFilter}&_page=${page}&_limit=10&_sort=name`
+    return this.http.get<Client[]>(url, {observe: 'response'});
   }
 
   delete(client: Client):Observable<void>{
