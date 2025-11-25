@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { Page } from '../../../../core/models/page';
 import { RouterLink } from "@angular/router";
+import { ToastService } from '../../../../core/services/toast';
 
 @Component({
   selector: 'app-clients-table-page',
@@ -14,7 +15,8 @@ import { RouterLink } from "@angular/router";
 })
 export class ClientsTablePageComponent implements OnInit {
 
-  private clientService = inject(ClientService);
+  clientService = inject(ClientService);
+  toastService = inject(ToastService);
 
   clientPage: Page<Client> = {} as Page<Client>;
   page = 1;
@@ -45,10 +47,11 @@ export class ClientsTablePageComponent implements OnInit {
   delete(client: Client){
     this.clientService.delete(client).subscribe({
       next: () => {
+        this.toastService.show("Cliente removido com sucesso!", "bg-success text-light");
         this.loadClients();
       },
       error: () => {
-        alert("Erro ao remover o cliente");
+        this.toastService.show('Houve um erro ao remover o cliente!', 'bg-danger text-light')
       }
     });
   }
