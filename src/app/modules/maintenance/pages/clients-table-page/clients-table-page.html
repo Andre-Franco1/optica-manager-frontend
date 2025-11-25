@@ -17,7 +17,8 @@
                 </tr>
                 <tr>
                     <th scope="col"></th>
-                    <th scope="col"><input class="form-control text-center" [(ngModel)]="nameFilter" (keyup)="filterByName()" placeholder="Filtrar por nome"></th>
+                    <th scope="col"><input class="form-control text-center" [(ngModel)]="nameFilter"
+                            (keyup)="filterByName()" placeholder="Filtrar por nome"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -30,18 +31,28 @@
                     <td>{{client.name}}</td>
                     <td>{{client.cpf}}</td>
                     <td>{{client.phone}}</td>
-                    <td >
+                    <td>
                         <a routerLink="/client-form/{{client.id}}">
                             <img src="/assets/pencil-fill.svg" width="20" height="20" alt="editar">
                         </a>
-                        <img src="/assets/trash3-fill.svg" width="20" height="20" alt="deletar" (click)="delete(client)">
+                        <img src="/assets/trash3-fill.svg" width="20" height="20" alt="deletar"
+                            (click)="delete(client, modalConfirm)">
                     </td>
                 </tr>
                 }
             </tbody>
         </table>
 
-        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="clientPage.numberOfElements" [(page)]="page" [boundaryLinks]="true" (pageChange)="pageChange()" />
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="clientPage.numberOfElements"
+            [(page)]="page" [boundaryLinks]="true" (pageChange)="pageChange()" />
 
     </div>
 </div>
+
+<app-modal #modalConfirm [title]="'Deseja remover o cliente?'">
+    @if (selectedClient){
+    <ng-container>
+        Nome: <span class="fw-bold me-1">{{selectedClient.name}}</span>
+    </ng-container>
+    }
+</app-modal>
