@@ -4,10 +4,11 @@ import { Client } from '../../../../core/models/client';
 import { FormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { Page } from '../../../../core/models/page';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-clients-table-page',
-  imports: [FormsModule, NgbPaginationModule],
+  imports: [FormsModule, NgbPaginationModule, RouterLink],
   templateUrl: './clients-table-page.html',
   styleUrl: './clients-table-page.css',
 })

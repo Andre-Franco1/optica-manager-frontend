@@ -4,7 +4,7 @@
     </div>
     <div class="border rounded shadow-sm p-4">
         <div class="text-start">
-            <a href="/prototype/pages/client.html" class="btn btn-primary">Cadastrar Cliente</a>
+            <a routerLink="/client-form" class="btn btn-primary">Cadastrar Cliente</a>
         </div>
         <table class="table table-striped">
             <thead>
@@ -31,7 +31,9 @@
                     <td>{{client.cpf}}</td>
                     <td>{{client.phone}}</td>
                     <td >
-                        <img src="/assets/pencil-fill.svg" width="20" height="20" alt="editar">
+                        <a routerLink="/client-form/{{client.id}}">
+                            <img src="/assets/pencil-fill.svg" width="20" height="20" alt="editar">
+                        </a>
                         <img src="/assets/trash3-fill.svg" width="20" height="20" alt="deletar" (click)="delete(client)">
                     </td>
                 </tr>
