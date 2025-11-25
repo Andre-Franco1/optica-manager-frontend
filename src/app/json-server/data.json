@@ -599,18 +599,6 @@
       "name": "Moses Garrett",
       "cpf": 44576642001,
       "phone": "(82) 0458-3872"
-    },
-    {
-      "id": 101,
-      "name": "tes",
-      "cpf": "teste",
-      "phone": "teste"
-    },
-    {
-      "id": 102,
-      "name": "teste",
-      "cpf": "teste",
-      "phone": "teste"
     }
   ]
 }

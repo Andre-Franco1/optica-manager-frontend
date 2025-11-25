@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } 
 import { ClientService } from '../../../../core/services/client';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { ToastService } from '../../../../core/services/toast';
 
 @Component({
   selector: 'app-client-form-page',
@@ -22,7 +21,6 @@ export class ClientFormPageComponent implements OnInit {
   clientService = inject(ClientService);
   location = inject(Location);
   router = inject(ActivatedRoute);
-  toastService = inject(ToastService);
 
   clientForm: FormGroup = this.formBuilder.group({
     id: [''],
@@ -54,10 +52,9 @@ export class ClientFormPageComponent implements OnInit {
         this.clientService.update(this.clientForm.value).subscribe(
           {
             next: () => {
-              this.toastService.show("Cliente atualizado com sucesso!", "bg-success text-light");
               this.location.back();
             },
-            error: () => this.toastService.show('Houve um erro ao atualizar o cliente!', 'bg-danger text-light')
+            error: () => alert("Erro ao salvar o cliente")
           }
         );
       }
@@ -65,10 +62,9 @@ export class ClientFormPageComponent implements OnInit {
         this.clientService.save(this.clientForm.value).subscribe(
           {
             next: () => {
-              this.toastService.show("Cliente cadastrado com sucesso!", "bg-success text-light");
               this.location.back();
             },
-            error: () => this.toastService.show('Houve um erro ao cadastrar o cliente!', 'bg-danger text-light')
+            error: () => alert("Erro ao salvar o cliente")
           }
         );
       }
