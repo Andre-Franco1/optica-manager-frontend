@@ -6,10 +6,11 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { Page } from '../../../../core/models/page';
 import { RouterLink } from "@angular/router";
 import { ToastService } from '../../../../core/services/toast';
+import { ModalComponent } from '../../../../shared/components/modal/modal';
 
 @Component({
   selector: 'app-clients-table-page',
-  imports: [FormsModule, NgbPaginationModule, RouterLink],
+  imports: [FormsModule, NgbPaginationModule, RouterLink, ModalComponent],
   templateUrl: './clients-table-page.html',
   styleUrl: './clients-table-page.css',
 })
@@ -22,6 +23,7 @@ export class ClientsTablePageComponent implements OnInit {
   page = 1;
 
   nameFilter: string = "";
+  selectedClient !: Client;
 
   ngOnInit(): void {
     this.loadClients();
@@ -36,23 +38,29 @@ export class ClientsTablePageComponent implements OnInit {
     });
   }
 
-  pageChange(){
-    this.loadClients();    
-  }
-
-  filterByName(){
+  pageChange() {
     this.loadClients();
   }
 
-  delete(client: Client){
-    this.clientService.delete(client).subscribe({
-      next: () => {
-        this.toastService.show("Cliente removido com sucesso!", "bg-success text-light");
-        this.loadClients();
-      },
-      error: () => {
-        this.toastService.show('Houve um erro ao remover o cliente!', 'bg-danger text-light')
+  filterByName() {
+    this.loadClients();
+  }
+
+  delete(client: Client, modalConfirm: ModalComponent) {
+    this.selectedClient = client;
+    modalConfirm.open().then(confirm => {
+      if (confirm) {
+        this.clientService.delete(client).subscribe({
+          next: () => {
+            this.toastService.show("Cliente removido com sucesso!", "bg-success text-light");
+            this.loadClients();
+          },
+          error: () => {
+            this.toastService.show('Houve um erro ao remover o cliente!', 'bg-danger text-light')
+          }
+        });
       }
-    });
+    })
+
   }
 }
