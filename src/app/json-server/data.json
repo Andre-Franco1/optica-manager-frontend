@@ -644,6 +644,146 @@
       "status": "PENDING",
       "clientId": 1,
       "userId": 1
+    },
+    {
+      "id": 2,
+      "issueDate": "2025-01-12",
+      "estimatedDeliveryDate": "2025-01-22",
+      "deliveryDate": null,
+      "paymentMethod": "PIX",
+      "cardBrand": null,
+      "installments": 1,
+      "totalAmount": 150.0,
+      "description": "Compra simples",
+      "status": "PENDING",
+      "clientId": 37,
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "issueDate": "2025-01-13",
+      "estimatedDeliveryDate": "2025-01-23",
+      "deliveryDate": null,
+      "paymentMethod": "CASH",
+      "cardBrand": null,
+      "installments": 1,
+      "totalAmount": 120.0,
+      "description": "Pagamento à vista",
+      "status": "PENDING",
+      "clientId": 12,
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "issueDate": "2025-01-15",
+      "estimatedDeliveryDate": "2025-01-25",
+      "deliveryDate": null,
+      "paymentMethod": "CARD",
+      "cardBrand": "MASTERCARD",
+      "installments": 2,
+      "totalAmount": 300.0,
+      "description": "Compra com duas parcelas",
+      "status": "PENDING",
+      "clientId": 58,
+      "userId": 1
+    },
+    {
+      "id": 5,
+      "issueDate": "2025-01-16",
+      "estimatedDeliveryDate": "2025-01-27",
+      "deliveryDate": null,
+      "paymentMethod": "PIX",
+      "cardBrand": null,
+      "installments": 1,
+      "totalAmount": 180.0,
+      "description": "Venda rápida",
+      "status": "PENDING",
+      "clientId": 73,
+      "userId": 1
+    },
+    {
+      "id": 6,
+      "issueDate": "2025-01-17",
+      "estimatedDeliveryDate": "2025-01-28",
+      "deliveryDate": null,
+      "paymentMethod": "CARD",
+      "cardBrand": "VISA",
+      "installments": 1,
+      "totalAmount": 200.0,
+      "description": "Cartão crédito",
+      "status": "PENDING",
+      "clientId": 4,
+      "userId": 1
+    },
+    {
+      "id": 7,
+      "issueDate": "2025-01-18",
+      "estimatedDeliveryDate": "2025-01-29",
+      "deliveryDate": null,
+      "paymentMethod": "CASH",
+      "cardBrand": null,
+      "installments": 1,
+      "totalAmount": 90.0,
+      "description": "Venda simples",
+      "status": "PENDING",
+      "clientId": 88,
+      "userId": 1
+    },
+    {
+      "id": 8,
+      "issueDate": "2025-01-19",
+      "estimatedDeliveryDate": "2025-01-30",
+      "deliveryDate": null,
+      "paymentMethod": "CARD",
+      "cardBrand": "ELO",
+      "installments": 3,
+      "totalAmount": 330.0,
+      "description": "Parcelado em 3x",
+      "status": "PENDING",
+      "clientId": 21,
+      "userId": 1
+    },
+    {
+      "id": 9,
+      "issueDate": "2025-01-20",
+      "estimatedDeliveryDate": "2025-01-31",
+      "deliveryDate": null,
+      "paymentMethod": "PIX",
+      "cardBrand": null,
+      "installments": 1,
+      "totalAmount": 110.0,
+      "description": "PIX imediato",
+      "status": "PENDING",
+      "clientId": 45,
+      "userId": 1
+    },
+    {
+      "id": 10,
+      "issueDate": "2025-01-21",
+      "estimatedDeliveryDate": "2025-02-01",
+      "deliveryDate": null,
+      "paymentMethod": "CASH",
+      "cardBrand": null,
+      "installments": 1,
+      "totalAmount": 80.0,
+      "description": "Venda pequena",
+      "status": "PENDING",
+      "clientId": 99,
+      "userId": 1
+    },
+    {
+      "id": 11,
+      "issueDate": "2025-01-22",
+      "estimatedDeliveryDate": "2025-02-02",
+      "deliveryDate": null,
+      "paymentMethod": "CARD",
+      "cardBrand": "VISA",
+      "installments": 4,
+      "totalAmount": 480.0,
+      "description": "Venda premium",
+      "status": "PENDING",
+      "clientId": 7,
+      "userId": 1
     }
   ],
   "saleItems": [
@@ -662,6 +802,86 @@
       "quantity": 2,
       "unitPrice": 120.0,
       "subtotal": 240.0
+    },
+    {
+      "id": 3,
+      "saleId": 2,
+      "productId": 1,
+      "quantity": 1,
+      "unitPrice": 150.0,
+      "subtotal": 150.0
+    },
+    {
+      "id": 4,
+      "saleId": 3,
+      "productId": 2,
+      "quantity": 1,
+      "unitPrice": 120.0,
+      "subtotal": 120.0
+    },
+    {
+      "id": 5,
+      "saleId": 4,
+      "productId": 1,
+      "quantity": 2,
+      "unitPrice": 150.0,
+      "subtotal": 300.0
+    },
+    {
+      "id": 6,
+      "saleId": 5,
+      "productId": 2,
+      "quantity": 1,
+      "unitPrice": 180.0,
+      "subtotal": 180.0
+    },
+    {
+      "id": 7,
+      "saleId": 6,
+      "productId": 1,
+      "quantity": 1,
+      "unitPrice": 200.0,
+      "subtotal": 200.0
+    },
+    {
+      "id": 8,
+      "saleId": 7,
+      "productId": 2,
+      "quantity": 1,
+      "unitPrice": 90.0,
+      "subtotal": 90.0
+    },
+    {
+      "id": 9,
+      "saleId": 8,
+      "productId": 1,
+      "quantity": 3,
+      "unitPrice": 110.0,
+      "subtotal": 330.0
+    },
+    {
+      "id": 10,
+      "saleId": 9,
+      "productId": 2,
+      "quantity": 1,
+      "unitPrice": 110.0,
+      "subtotal": 110.0
+    },
+    {
+      "id": 11,
+      "saleId": 10,
+      "productId": 1,
+      "quantity": 1,
+      "unitPrice": 80.0,
+      "subtotal": 80.0
+    },
+    {
+      "id": 12,
+      "saleId": 11,
+      "productId": 2,
+      "quantity": 4,
+      "unitPrice": 120.0,
+      "subtotal": 480.0
     }
   ]
 }
