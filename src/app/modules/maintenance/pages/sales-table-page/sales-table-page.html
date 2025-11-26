@@ -1,0 +1,60 @@
+<div class="container text-center">
+    <div class="display-6">
+        Lista de Vendas Pendentes (Não Entregues):
+    </div>
+    <div class="border rounded shadow-sm p-4">
+        <div class="text-start">
+            <a href="/prototype/pages/sale.html" class="btn btn-primary">Cadastrar Venda</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Data venda</th>
+                    <th scope="col">Metodo de pagamento</th>
+                    <th scope="col">Valor total</th>
+                    <th scope="col">Data entrega</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"><input class="form-control text-center" placeholder="Filtrar por nome"></th>
+                    <th scope="col"><input class="form-control text-center" placeholder="Filtrar por cpf"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (sale of sales; track sale.id){
+                <tr class="align-middle">
+                    <th scope="row">{{sale.id}}</th>
+                    <td>{{sale.client.name}}</td>
+                    <td>{{sale.client.cpf}}</td>
+                    <td>{{sale.issueDate}}</td>
+                    <td>{{sale.paymentMethod}}</td>
+                    <td>{{sale.totalAmount}}</td>
+                    <td>{{sale.estimatedDeliveryDate}}</td>
+                    <td>{{sale.status}}</td>
+                    <td>
+                        <button type="button" class="btn icon-btn me-2" >
+                            <img src="/assets/pencil-fill.svg" width="16" height="16" alt="editar">
+                        </button>
+
+                        <button type="button" class="btn icon-btn ms-2" >
+                            <img src="/assets/trash3-fill.svg" width="16" height="16" alt="deletar">
+                        </button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

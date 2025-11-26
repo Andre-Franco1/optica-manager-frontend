@@ -1,4 +1,33 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "name": "Operador Teste",
+      "email": "operador.teste@opticamanager.com",
+      "password": "testepwd",
+      "role": "OPERATOR",
+      "active": true
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "code": "ARM123",
+      "name": "Armação Keen",
+      "costPrice": 50.0,
+      "salePrice": 150.0,
+      "category": "PRESCRIPTION",
+      "stockQuantity": 82
+    },
+    {
+      "id": 2,
+      "code": "LEN456",
+      "name": "Lente Antirreflexo",
+      "costPrice": 50.0,
+      "salePrice": 150.0,
+      "lensType": "ANTIREFLECTIVE"
+    }
+  ],
   "clients": [
     {
       "id": 1,
@@ -599,6 +628,40 @@
       "name": "Moses Garrett",
       "cpf": 44576642001,
       "phone": "(82) 0458-3872"
+    }
+  ],
+  "sales": [
+    {
+      "id": 1,
+      "issueDate": "2025-01-10",
+      "estimatedDeliveryDate": "2025-01-20",
+      "deliveryDate": null,
+      "paymentMethod": "CARD",
+      "cardBrand": "VISA",
+      "installments": 3,
+      "totalAmount": 390.0,
+      "description": "Venda completa com armação e lente",
+      "status": "PENDING",
+      "clientId": 1,
+      "userId": 1
+    }
+  ],
+  "saleItems": [
+    {
+      "id": 1,
+      "saleId": 1,
+      "productId": 1,
+      "quantity": 1,
+      "unitPrice": 150.0,
+      "subtotal": 150.0
+    },
+    {
+      "id": 2,
+      "saleId": 1,
+      "productId": 2,
+      "quantity": 2,
+      "unitPrice": 120.0,
+      "subtotal": 240.0
     }
   ]
 }
