@@ -26,17 +26,19 @@
             </thead>
             <tbody>
                 @for (client of clientPage.content; track client.id){
-                <tr>
+                <tr class="align-middle">
                     <th scope="row">{{client.id}}</th>
                     <td>{{client.name}}</td>
                     <td>{{client.cpf}}</td>
                     <td>{{client.phone}}</td>
                     <td>
-                        <a routerLink="/client-form/{{client.id}}">
-                            <img src="/assets/pencil-fill.svg" width="20" height="20" alt="editar">
-                        </a>
-                        <img src="/assets/trash3-fill.svg" width="20" height="20" alt="deletar"
-                            (click)="delete(client, modalConfirm)">
+                        <button type="button" class="btn icon-btn me-2" routerLink="/client-form/{{client.id}}">
+                            <img src="/assets/pencil-fill.svg" width="16" height="16" alt="editar">
+                        </button>
+
+                        <button type="button" class="btn icon-btn ms-2" (click)="delete(client, modalConfirm)">
+                            <img src="/assets/trash3-fill.svg" width="16" height="16" alt="deletar">
+                        </button>
                     </td>
                 </tr>
                 }

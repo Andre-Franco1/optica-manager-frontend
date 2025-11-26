@@ -1,6 +1,9 @@
-import { Person } from "./person";
+import { Sex } from "../enums/sex";
 
-export interface Client extends Person{
+export interface Client {
+    id: number;
+    name: string;
     cpf: string;
     phone: string;
+    sex: Sex;
 }
