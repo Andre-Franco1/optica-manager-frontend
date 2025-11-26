@@ -32,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-                @for (sale of sales; track sale.id){
+                @for (sale of salePage.content; track sale.id){
                 <tr class="align-middle">
                     <th scope="row">{{sale.id}}</th>
                     <td>{{sale.client.name}}</td>
@@ -43,11 +43,11 @@
                     <td>{{sale.estimatedDeliveryDate}}</td>
                     <td>{{sale.status}}</td>
                     <td>
-                        <button type="button" class="btn icon-btn me-2" >
+                        <button type="button" class="btn icon-btn me-2">
                             <img src="/assets/pencil-fill.svg" width="16" height="16" alt="editar">
                         </button>
 
-                        <button type="button" class="btn icon-btn ms-2" >
+                        <button type="button" class="btn icon-btn ms-2">
                             <img src="/assets/trash3-fill.svg" width="16" height="16" alt="deletar">
                         </button>
                     </td>
@@ -55,6 +55,7 @@
                 }
             </tbody>
         </table>
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="salePage.numberOfElements"
+            [(page)]="page" [boundaryLinks]="true" (pageChange)="pageChange()" />
     </div>
-
 </div>

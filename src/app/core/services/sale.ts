@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Sale } from '../models/sale';
 import { Observable } from 'rxjs';
@@ -12,9 +12,9 @@ export class SaleService {
 
   http = inject(HttpClient);
 
-  getSales():Observable<Sale[]>{
-    let url = `${this.baseUrl}?_expand=client&_expand=user`;
-    return this.http.get<Sale[]>(url);
+  getSales(page: number):Observable<HttpResponse<Sale[]>>{
+    let url = `${this.baseUrl}?_page=${page}&_expand=client&_expand=user`;
+    return this.http.get<Sale[]>(url, {observe: 'response'});
   }
 
 }
