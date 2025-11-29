@@ -4,7 +4,7 @@
     </div>
     <div class="border rounded shadow-sm p-4">
         <div class="text-start">
-            <a href="/prototype/pages/sale.html" class="btn btn-primary">Cadastrar Venda</a>
+            <a routerLink="/sale-form" class="btn btn-primary">Cadastrar Venda</a>
         </div>
         <table class="table table-striped">
             <thead>
@@ -35,8 +35,8 @@
                 @for (sale of salePage.content; track sale.id){
                 <tr class="align-middle">
                     <th scope="row">{{sale.id}}</th>
-                    <td>{{sale.client.name}}</td>
-                    <td>{{sale.client.cpf}}</td>
+                    <td>{{sale.client?.name}}</td>
+                    <td>{{sale.client?.cpf}}</td>
                     <td>{{sale.issueDate}}</td>
                     <td>{{sale.paymentMethod}}</td>
                     <td>{{sale.totalAmount}}</td>

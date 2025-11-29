@@ -16,6 +16,11 @@ export class ClientService {
     let url = `${this.baseUrl}?name_like=${clientNameFilter}&_page=${page}&_limit=10&_sort=name`
     return this.http.get<Client[]>(url, {observe: 'response'});
   }
+  
+  getClientsByName(clientNameFilter: string):Observable<Client[]>{
+    let url = `${this.baseUrl}?name_like=${clientNameFilter}&_limit=10`;
+    return this.http.get<Client[]>(url);
+  }
 
   delete(client: Client):Observable<void>{
     let url = `${this.baseUrl}/${client.id}`;
