@@ -3,10 +3,11 @@ import { Page } from '../../../../core/models/page';
 import { Sale } from '../../../../core/models/sale';
 import { SaleService } from '../../../../core/services/sale';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sales-table-page',
-  imports: [NgbPaginationModule],
+  imports: [NgbPaginationModule, RouterLink],
   templateUrl: './sales-table-page.html',
   styleUrl: './sales-table-page.css',
 })

@@ -1,4 +1,4 @@
 export enum ProductType {
-    FRAME = 'FRAME',
-    LENS = 'LENS'
+    Frame = 'FRAME',
+    Lens = 'LENS'
 }

@@ -14,8 +14,9 @@
       "id": 1,
       "code": "ARM123",
       "name": "Armação Keen",
-      "costPrice": 50.0,
-      "salePrice": 150.0,
+      "costPrice": 50,
+      "salePrice": 150,
+      "type": "FRAME",
       "category": "PRESCRIPTION",
       "stockQuantity": 82
     },
@@ -23,8 +24,9 @@
       "id": 2,
       "code": "LEN456",
       "name": "Lente Antirreflexo",
-      "costPrice": 50.0,
-      "salePrice": 150.0,
+      "costPrice": 50,
+      "salePrice": 150,
+      "type": "LENS",
       "lensType": "ANTIREFLECTIVE"
     }
   ],
@@ -628,6 +630,30 @@
       "name": "Moses Garrett",
       "cpf": 44576642001,
       "phone": "(82) 0458-3872"
+    },
+    {
+      "id": 101,
+      "name": "teste",
+      "cpf": "1421421421",
+      "phone": "141241241"
+    },
+    {
+      "id": 102,
+      "name": "testeww",
+      "cpf": "33333333333333",
+      "phone": "333333"
+    },
+    {
+      "id": 103,
+      "name": "ate",
+      "cpf": "2132312332",
+      "phone": "312312"
+    },
+    {
+      "id": 104,
+      "name": "wwa",
+      "cpf": "4141",
+      "phone": "23"
     }
   ],
   "sales": [
@@ -639,7 +665,7 @@
       "paymentMethod": "CARD",
       "cardBrand": "VISA",
       "installments": 3,
-      "totalAmount": 390.0,
+      "totalAmount": 390,
       "description": "Venda completa com armação e lente",
       "status": "PENDING",
       "clientId": 1,
@@ -653,7 +679,7 @@
       "paymentMethod": "PIX",
       "cardBrand": null,
       "installments": 1,
-      "totalAmount": 150.0,
+      "totalAmount": 150,
       "description": "Compra simples",
       "status": "PENDING",
       "clientId": 37,
@@ -667,7 +693,7 @@
       "paymentMethod": "CASH",
       "cardBrand": null,
       "installments": 1,
-      "totalAmount": 120.0,
+      "totalAmount": 120,
       "description": "Pagamento à vista",
       "status": "PENDING",
       "clientId": 12,
@@ -681,7 +707,7 @@
       "paymentMethod": "CARD",
       "cardBrand": "MASTERCARD",
       "installments": 2,
-      "totalAmount": 300.0,
+      "totalAmount": 300,
       "description": "Compra com duas parcelas",
       "status": "PENDING",
       "clientId": 58,
@@ -695,7 +721,7 @@
       "paymentMethod": "PIX",
       "cardBrand": null,
       "installments": 1,
-      "totalAmount": 180.0,
+      "totalAmount": 180,
       "description": "Venda rápida",
       "status": "PENDING",
       "clientId": 73,
@@ -709,7 +735,7 @@
       "paymentMethod": "CARD",
       "cardBrand": "VISA",
       "installments": 1,
-      "totalAmount": 200.0,
+      "totalAmount": 200,
       "description": "Cartão crédito",
       "status": "PENDING",
       "clientId": 4,
@@ -723,7 +749,7 @@
       "paymentMethod": "CASH",
       "cardBrand": null,
       "installments": 1,
-      "totalAmount": 90.0,
+      "totalAmount": 90,
       "description": "Venda simples",
       "status": "PENDING",
       "clientId": 88,
@@ -737,7 +763,7 @@
       "paymentMethod": "CARD",
       "cardBrand": "ELO",
       "installments": 3,
-      "totalAmount": 330.0,
+      "totalAmount": 330,
       "description": "Parcelado em 3x",
       "status": "PENDING",
       "clientId": 21,
@@ -751,7 +777,7 @@
       "paymentMethod": "PIX",
       "cardBrand": null,
       "installments": 1,
-      "totalAmount": 110.0,
+      "totalAmount": 110,
       "description": "PIX imediato",
       "status": "PENDING",
       "clientId": 45,
@@ -765,7 +791,7 @@
       "paymentMethod": "CASH",
       "cardBrand": null,
       "installments": 1,
-      "totalAmount": 80.0,
+      "totalAmount": 80,
       "description": "Venda pequena",
       "status": "PENDING",
       "clientId": 99,
@@ -779,11 +805,164 @@
       "paymentMethod": "CARD",
       "cardBrand": "VISA",
       "installments": 4,
-      "totalAmount": 480.0,
+      "totalAmount": 480,
       "description": "Venda premium",
       "status": "PENDING",
       "clientId": 7,
       "userId": 1
+    },
+    {
+      "client": {
+        "id": 8,
+        "name": "Annette Rivera",
+        "cpf": 79873550554,
+        "phone": "(95) 3590-3464"
+      },
+      "saleItems": [
+        {
+          "product": {
+            "id": 1,
+            "code": "ARM123",
+            "name": "Armação Keen",
+            "costPrice": 50,
+            "salePrice": 150,
+            "type": "FRAME",
+            "category": "PRESCRIPTION",
+            "stockQuantity": 82
+          },
+          "price": 90
+        }
+      ],
+      "estimatedDeliveryDate": "2025-12-04",
+      "paymentMethod": "CREDIT_CARD",
+      "cardBrand": "ELO",
+      "installments": 7,
+      "comments": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "issueDate": "2025-11-28T06:14:52.062Z",
+      "deliveryDate": null,
+      "totalAmount": 90,
+      "id": 12
+    },
+    {
+      "client": {
+        "id": 19,
+        "name": "Davidson Cotton",
+        "cpf": 65775447792,
+        "phone": "(86) 0403-3636"
+      },
+      "saleItems": [
+        {
+          "product": {
+            "id": 1,
+            "code": "ARM123",
+            "name": "Armação Keen",
+            "costPrice": 50,
+            "salePrice": 150,
+            "type": "FRAME",
+            "category": "PRESCRIPTION",
+            "stockQuantity": 82
+          },
+          "price": 141
+        }
+      ],
+      "estimatedDeliveryDate": "2025-12-04",
+      "paymentMethod": "CASH",
+      "comments": "",
+      "issueDate": "2025-11-28T06:35:21.724Z",
+      "deliveryDate": null,
+      "totalAmount": 141,
+      "id": 13
+    },
+    {
+      "client": {
+        "id": 90,
+        "name": "Merritt Wilkinson",
+        "cpf": 87007969538,
+        "phone": "(93) 4568-3280"
+      },
+      "saleItems": [
+        {
+          "product": {
+            "id": 1,
+            "code": "ARM123",
+            "name": "Armação Keen",
+            "costPrice": 50,
+            "salePrice": 150,
+            "type": "FRAME",
+            "category": "PRESCRIPTION",
+            "stockQuantity": 82
+          },
+          "price": 414
+        }
+      ],
+      "estimatedDeliveryDate": "2025-12-03",
+      "paymentMethod": "CASH",
+      "comments": null,
+      "issueDate": "2025-11-28T06:37:39.311Z",
+      "deliveryDate": null,
+      "totalAmount": 414,
+      "id": 14
+    },
+    {
+      "client": {
+        "id": 1,
+        "name": "Kari Montgomery",
+        "cpf": 77772778837,
+        "phone": "(93) 0553-3981"
+      },
+      "saleItems": [
+        {
+          "product": {
+            "id": 1,
+            "code": "ARM123",
+            "name": "Armação Keen",
+            "costPrice": 50,
+            "salePrice": 150,
+            "type": "FRAME",
+            "category": "PRESCRIPTION",
+            "stockQuantity": 82
+          },
+          "price": 141
+        }
+      ],
+      "estimatedDeliveryDate": "2025-12-04",
+      "paymentMethod": "CASH",
+      "comments": "",
+      "issueDate": "2025-11-28T06:44:41.192Z",
+      "deliveryDate": null,
+      "totalAmount": 141,
+      "id": 15
+    },
+    {
+      "client": {
+        "id": 78,
+        "name": "Trevino Hancock",
+        "cpf": 74394277566,
+        "phone": "(83) 9485-3143"
+      },
+      "saleItems": [
+        {
+          "product": {
+            "id": 1,
+            "code": "ARM123",
+            "name": "Armação Keen",
+            "costPrice": 50,
+            "salePrice": 150,
+            "type": "FRAME",
+            "category": "PRESCRIPTION",
+            "stockQuantity": 82
+          },
+          "price": 12
+        }
+      ],
+      "estimatedDeliveryDate": "2025-12-04",
+      "paymentMethod": "CASH",
+      "comments": "",
+      "issueDate": "2025-11-29T15:53:47.360Z",
+      "deliveryDate": null,
+      "totalAmount": 12,
+      "status": "PENDING",
+      "id": 16
     }
   ],
   "saleItems": [
@@ -792,96 +971,96 @@
       "saleId": 1,
       "productId": 1,
       "quantity": 1,
-      "unitPrice": 150.0,
-      "subtotal": 150.0
+      "unitPrice": 150,
+      "subtotal": 150
     },
     {
       "id": 2,
       "saleId": 1,
       "productId": 2,
       "quantity": 2,
-      "unitPrice": 120.0,
-      "subtotal": 240.0
+      "unitPrice": 120,
+      "subtotal": 240
     },
     {
       "id": 3,
       "saleId": 2,
       "productId": 1,
       "quantity": 1,
-      "unitPrice": 150.0,
-      "subtotal": 150.0
+      "unitPrice": 150,
+      "subtotal": 150
     },
     {
       "id": 4,
       "saleId": 3,
       "productId": 2,
       "quantity": 1,
-      "unitPrice": 120.0,
-      "subtotal": 120.0
+      "unitPrice": 120,
+      "subtotal": 120
     },
     {
       "id": 5,
       "saleId": 4,
       "productId": 1,
       "quantity": 2,
-      "unitPrice": 150.0,
-      "subtotal": 300.0
+      "unitPrice": 150,
+      "subtotal": 300
     },
     {
       "id": 6,
       "saleId": 5,
       "productId": 2,
       "quantity": 1,
-      "unitPrice": 180.0,
-      "subtotal": 180.0
+      "unitPrice": 180,
+      "subtotal": 180
     },
     {
       "id": 7,
       "saleId": 6,
       "productId": 1,
       "quantity": 1,
-      "unitPrice": 200.0,
-      "subtotal": 200.0
+      "unitPrice": 200,
+      "subtotal": 200
     },
     {
       "id": 8,
       "saleId": 7,
       "productId": 2,
       "quantity": 1,
-      "unitPrice": 90.0,
-      "subtotal": 90.0
+      "unitPrice": 90,
+      "subtotal": 90
     },
     {
       "id": 9,
       "saleId": 8,
       "productId": 1,
       "quantity": 3,
-      "unitPrice": 110.0,
-      "subtotal": 330.0
+      "unitPrice": 110,
+      "subtotal": 330
     },
     {
       "id": 10,
       "saleId": 9,
       "productId": 2,
       "quantity": 1,
-      "unitPrice": 110.0,
-      "subtotal": 110.0
+      "unitPrice": 110,
+      "subtotal": 110
     },
     {
       "id": 11,
       "saleId": 10,
       "productId": 1,
       "quantity": 1,
-      "unitPrice": 80.0,
-      "subtotal": 80.0
+      "unitPrice": 80,
+      "subtotal": 80
     },
     {
       "id": 12,
       "saleId": 11,
       "productId": 2,
       "quantity": 4,
-      "unitPrice": 120.0,
-      "subtotal": 480.0
+      "unitPrice": 120,
+      "subtotal": 480
     }
   ]
 }
