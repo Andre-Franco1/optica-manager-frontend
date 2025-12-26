@@ -1,6 +1,6 @@
 import { CardBrand } from "../enums/card-brand";
 import { PaymentMethod } from "../enums/payment-method";
-import { Status } from "../enums/status";
+import { SaleStatus } from "../enums/sale-status";
 import { Client } from "./client";
 import { Prescription } from "./prescription";
 import { SaleItem } from "./sale-item";
@@ -11,17 +11,24 @@ export interface Sale {
     issueDate: Date;
     estimatedDeliveryDate: Date;
     deliveryDate: Date | null;
+
+    totalAmount: number;
     paymentMethod: PaymentMethod;
     cardBrand: CardBrand | null;
     installments: number | null;
-    totalAmount: number;
+    
     comments: string;
-    status: Status;
+    saleStatus: SaleStatus;
 
-    client: Client | null;
+    
+    clientId: number,
+    clientName: string,
+    clientCpf: string
+    
+
     prescription: Prescription | null;
 
-    user: User;
+    user: {id : number};
 
     saleItems: SaleItem[];
 }

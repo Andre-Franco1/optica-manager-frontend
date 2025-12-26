@@ -16,13 +16,11 @@
                     <th scope="col">Metodo de pagamento</th>
                     <th scope="col">Valor total</th>
                     <th scope="col">Data entrega</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Ações</th>
                 </tr>
                 <tr>
                     <th scope="col"></th>
                     <th scope="col"><input class="form-control text-center" placeholder="Filtrar por nome"></th>
-                    <th scope="col"><input class="form-control text-center" placeholder="Filtrar por cpf"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -35,13 +33,12 @@
                 @for (sale of salePage.content; track sale.id){
                 <tr class="align-middle">
                     <th scope="row">{{sale.id}}</th>
-                    <td>{{sale.client?.name}}</td>
-                    <td>{{sale.client?.cpf}}</td>
-                    <td>{{sale.issueDate}}</td>
-                    <td>{{sale.paymentMethod}}</td>
-                    <td>{{sale.totalAmount}}</td>
-                    <td>{{sale.estimatedDeliveryDate}}</td>
-                    <td>{{sale.status}}</td>
+                    <td>{{sale.clientName}}</td>
+                    <td>{{sale.clientCpf}}</td>
+                    <td>{{sale.issueDate | date: "dd/MM/yyyy"}}</td>
+                    <td>{{paymentMethodLabels[sale.paymentMethod] }}</td>
+                    <td>R$ {{sale.totalAmount | number:'1.2-2'}}</td>
+                    <td>{{sale.estimatedDeliveryDate | date: "dd/MM/yyyy" }}</td>
                     <td>
                         <button type="button" class="btn icon-btn me-2">
                             <img src="/assets/pencil-fill.svg" width="16" height="16" alt="editar">

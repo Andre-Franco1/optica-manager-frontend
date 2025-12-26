@@ -85,6 +85,18 @@
                                 </div>
                                 }
 
+                                @if (selectedProductType == 'LENS'){
+                                <div class="col-12">
+                                    <label class="form-label">Selecione a lente:</label>
+                                    <select class="form-select" formControlName="product">
+                                        @for(product of lensProducts; track product.id){
+                                        <option [ngValue]="product">{{ product.name }}
+                                        </option>
+                                        }
+                                    </select>
+                                </div>
+                                }
+                                
                                 <div class="col-12">
                                     <label class="form-label">Preço do Produto:</label>
                                     <input type="number" class="form-control" formControlName="price">
@@ -109,15 +121,9 @@
                             <div class="d-flex justify-content-between align-items-center">
 
                                 <div class="d-flex flex-column gap-1 text-start ms-2">
-                                    <strong>{{ saleItem.value.product.type }}</strong><br>
-                                    @if(saleItem.value.product.type == 'LENS'){
-                                    <span>Lente: {{saleItem.value.product.name}}</span>
-                                    }
-                                    @if(saleItem.value.product.type == 'FRAME'){
-                                    <span>Armação: {{saleItem.value.product.name}}</span>
-                                    }
+                                    <strong>{{ saleItem.value.product.name }}</strong><br>
                                     <br>
-                                    <span>Preço: R$ {{ saleItem.value.price }}</span>
+                                    <span>Preço: R$ {{ saleItem.value.price | number:'1.2-2' }}</span>
                                 </div>
 
                                 <button type="button" class="btn btn-sm btn-danger" (click)="removeSaleItem(i)">
@@ -244,11 +250,11 @@
         <div class="alert alert-secondary">
             <div class="row">
                 <div class="col-4">Nome do cliente:</div>
-                <div class="col-8 fw-bold text-start">{{sale.client && sale.client.name}}</div>
+                <div class="col-8 fw-bold text-start">{{sale.clientName}}</div>
             </div>
             <div class="row">
                 <div class="col-4">CPF do cliente:</div>
-                <div class="col-8 fw-bold">{{sale.client && sale.client.cpf}}</div>
+                <div class="col-8 fw-bold">{{sale.clientCpf}}</div>
             </div>
         </div>
         <div class="alert alert-secondary">

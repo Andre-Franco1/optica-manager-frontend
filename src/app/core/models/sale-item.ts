@@ -1,7 +1,8 @@
-import { Product } from "./product";
+import { ProductType } from "../enums/product-type";
 
 export interface SaleItem {
     id: number;
     price: number;
-    product: Product;
+    productId: number;
+    productType: ProductType;
 }
