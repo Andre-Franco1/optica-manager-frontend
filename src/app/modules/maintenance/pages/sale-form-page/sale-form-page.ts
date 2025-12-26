@@ -1,26 +1,28 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { Sale } from '../../../../core/models/sale';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule, FormArray } from '@angular/forms';
-import { SaleService } from '../../../../core/services/sale';
 import { DatePipe, JsonPipe, Location } from '@angular/common';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { PaymentMethod, PaymentMethodLabels } from '../../../../core/enums/payment-method';
-import { Client } from '../../../../core/models/client';
-import { debounceTime, distinctUntilChanged, filter, Observable, switchMap } from 'rxjs';
-import { ClientService } from '../../../../core/services/client';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
+import { debounceTime, distinctUntilChanged, filter, map, Observable, switchMap } from 'rxjs';
 import { CardBrand } from '../../../../core/enums/card-brand';
-import { ProductService } from '../../../../core/services/product';
-import { Product } from '../../../../core/models/product';
-import { ProductType } from '../../../../core/enums/product-type';
 import { FrameCategory } from '../../../../core/enums/frame-category';
-import { ModalComponent } from '../../../../shared/components/modal/modal';
+import { PaymentMethod, PaymentMethodLabels } from '../../../../core/enums/payment-method';
+import { ProductType } from '../../../../core/enums/product-type';
+import { SaleStatus } from '../../../../core/enums/sale-status';
+import { Client } from '../../../../core/models/client';
+import { Frame } from '../../../../core/models/frame';
+import { Lens } from '../../../../core/models/lens';
+import { Sale } from '../../../../core/models/sale';
+import { ClientService } from '../../../../core/services/client';
+import { FrameService } from '../../../../core/services/frame';
+import { LensService } from '../../../../core/services/lens';
+import { SaleService } from '../../../../core/services/sale';
 import { ToastService } from '../../../../core/services/toast';
-import { Status } from '../../../../core/enums/status';
-
+import { ModalComponent } from '../../../../shared/components/modal/modal';
+import { DecimalPipe } from '@angular/common';
 @Component({
   selector: 'app-sale-form-page',
-  imports: [ReactiveFormsModule, FormsModule, NgbTypeahead, ModalComponent, DatePipe],
+  imports: [ReactiveFormsModule, FormsModule, NgbTypeahead, ModalComponent, DatePipe, DecimalPipe],
   templateUrl: './sale-form-page.html',
   styleUrl: './sale-form-page.css',
   providers: [JsonPipe]
@@ -29,15 +31,15 @@ export class SaleFormPageComponent implements OnInit {
 
   sale: Sale = {} as Sale;
 
-  products: Product[] = [];
-  lensProducts: Product[] = [];
-  framePrescriptionProducts: Product[] = [];
-  frameSolarProducts: Product[] = [];
+  lenses: Lens[] = [];
+  prescriptionFrames: Frame[] = [];
+  sunglassFrames: Frame[] = [];
 
   formBuilder = inject(FormBuilder);
   saleService = inject(SaleService);
   clientService = inject(ClientService);
-  productService = inject(ProductService);
+  frameService= inject(FrameService);
+  lensService= inject(LensService);
   toastService = inject(ToastService);
   location = inject(Location);
   router = inject(ActivatedRoute);
@@ -76,7 +78,8 @@ export class SaleFormPageComponent implements OnInit {
   formatter = (client: Client) => client.name;
 
   ngOnInit(): void {
-    this.loadProducts();
+    this.loadFrames();
+    this.loadLenses();
   }
 
   searchClients = (text: Observable<string>): Observable<Client[]> => {
@@ -84,7 +87,8 @@ export class SaleFormPageComponent implements OnInit {
       debounceTime(200),
       distinctUntilChanged(),
       filter(term => term.length >= 2),
-      switchMap(term => this.clientService.getClientsByName(term))
+      switchMap(term => this.clientService.getClientsByName(term)),
+      map( page => page.content || [])
     );
   }
 
@@ -92,15 +96,27 @@ export class SaleFormPageComponent implements OnInit {
     return this.saleForm.controls["client"].value;
   }
 
-  loadProducts() {
-    this.productService.getProducts().subscribe({
-      next: products => {
-        this.products = products;
-        this.lensProducts = products.filter(p => p.type === ProductType.Lens);
-        this.framePrescriptionProducts = products.filter(p => p.type === ProductType.Frame && p.category === FrameCategory.Prescription);
-        this.frameSolarProducts = products.filter(p => p.type === ProductType.Frame && p.category === FrameCategory.Sunglass);
+  loadFrames() {
+    this.frameService.getFrames().subscribe({
+      next: frames => {
+        this.prescriptionFrames = frames.filter(
+          f => f.frameCategory === 'PRESCRIPTION'
+        );
+
+        this.sunglassFrames = frames.filter(
+          f => f.frameCategory === 'SUNGLASS'
+        );
       },
-      error: () => alert("Erro ao carregar produtos")
+      error: () => alert("Erro ao carregar armações.")
+    });
+  }
+
+  loadLenses() {
+    this.lensService.getLenses().subscribe({
+      next: lenses => {
+        this.lenses = lenses;
+      },
+      error: () => alert("Erro ao carregar lentes.")
     });
   }
 
@@ -209,9 +225,11 @@ export class SaleFormPageComponent implements OnInit {
             next: () => {
               this.toastService.show(`Venda cadastrada com sucesso!`, 'bg-success text-light');
               this.clean();
+              this.location.back();
             },
             error: () => {
               this.toastService.show(`Houve um erro ao salvar a venda`, 'bg-danger text-light');
+              this.location.back();
             }
           });
         }
@@ -225,7 +243,8 @@ export class SaleFormPageComponent implements OnInit {
     sale.issueDate = new Date();
     sale.deliveryDate = null;
     sale.totalAmount = this.totalAmount;
-    sale.status = Status.Pending;
+    sale.saleStatus = SaleStatus.Pending;
+    sale.user = {id: 1};
     //user, prescription
     return sale;
   }
@@ -237,8 +256,6 @@ export class SaleFormPageComponent implements OnInit {
   cancel() {
     this.location.back();
   }
-
-
 
 
 
@@ -273,14 +290,17 @@ export class SaleFormPageComponent implements OnInit {
   }
 
   get filteredFrameProducts() {
-    if (this.selectedProductType !== ProductType.Frame) return [];
     if (this.selectedFrameCategory === FrameCategory.Prescription) {
-      return this.framePrescriptionProducts;
+      return this.prescriptionFrames;
     }
     if (this.selectedFrameCategory === FrameCategory.Sunglass) {
-      return this.frameSolarProducts;
+      return this.sunglassFrames;
     }
     return [];
+  }
+
+  get lensProducts() {
+    return this.lenses;
   }
 
 }
