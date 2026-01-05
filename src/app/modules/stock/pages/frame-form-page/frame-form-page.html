@@ -1,0 +1,86 @@
+<div class="container text-center">
+    <div class="display-6">
+        Cadastrar Armação:
+    </div>
+    <div class="border rounded shadow-sm p-4">
+        <form [formGroup]="frameForm" #ngFrameForm="ngForm">
+            <div class="row">
+                <div class="col-9 m-auto">
+                    <div class="mb-3">
+                        <label for="code" class="form-label">Código: </label>
+                        <input type="text" class="form-control" id="code" placeholder="Código" formControlName="code">
+                        @if (ngFrameForm.submitted){
+                        <div class="text-danger text-start">
+                            @if (ffCode?.errors?.['required']){
+                            <small><sup>*</sup>O código é obrigatório</small>
+                            }
+                        </div>
+                        }
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome: </label>
+                        <input type="name" class="form-control" id="name" placeholder="Nome" formControlName="name">
+                        @if (ngFrameForm.submitted){
+                        <div class="text-danger text-start">
+                            @if (ffName?.errors?.['required']){
+                            <small><sup>*</sup>O nome é obrigatório</small>
+                            }
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9 m-auto">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="frameBrand" class="form-label">Marca: </label>
+                                <select class="form-select" formControlName="frameBrand">
+                                    @for(frameBrand of frameBrands; track frameBrand){
+                                    <option [ngValue]="frameBrand">{{ frameBrandLabels[frameBrand] }}</option>
+                                    }
+                                </select>
+                                @if (ngFrameForm.submitted){
+                                <div class="text-danger text-start">
+                                    @if (ffFrameBrand?.errors?.['required']) {
+                                    <small><sup>*</sup>Marca é obrigatória!</small>
+                                    }
+                                </div>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="frameType" class="form-label">Tipo: </label>
+                                <select class="form-select" formControlName="frameType">
+                                    @for(frameType of frameTypes; track frameType){
+                                    <option [ngValue]="frameType">{{ frameTypeLabels[frameType] }}</option>
+                                    }
+                                </select>
+                                @if (ngFrameForm.submitted){
+                                <div class="text-danger text-start">
+                                    @if (ffFrameType?.errors?.['required']) {
+                                    <small><sup>*</sup>Tipo é obrigatório!</small>
+                                    }
+                                </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="mb-3 text-end">
+                <button class="btn btn-secondary me-1" (click)="cancel()">Cancelar</button>
+                <button class="btn btn-primary" [disabled]="!frameForm.dirty" (click)="save()">Salvar</button>
+            </div>
+
+
+        </form>
+    </div>
+</div>

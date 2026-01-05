@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { debounceTime, distinctUntilChanged, filter, map, Observable, switchMap } from 'rxjs';
 import { CardBrand } from '../../../../core/enums/card-brand';
-import { FrameCategory } from '../../../../core/enums/frame-category';
+import { FrameType } from '../../../../core/enums/frame-type';
 import { PaymentMethod, PaymentMethodLabels } from '../../../../core/enums/payment-method';
 import { ProductType } from '../../../../core/enums/product-type';
 import { SaleStatus } from '../../../../core/enums/sale-status';
@@ -57,7 +57,7 @@ export class SaleFormPageComponent implements OnInit {
   totalAmount: number = 0;
 
   selectedProductType: ProductType | null = null;
-  selectedFrameCategory: FrameCategory | null = null;
+  selectedFrameType: FrameType | null = null;
 
   saleForm: FormGroup = this.formBuilder.group({
     client: ['', Validators.required],
@@ -100,11 +100,11 @@ export class SaleFormPageComponent implements OnInit {
     this.frameService.getFrames().subscribe({
       next: frames => {
         this.prescriptionFrames = frames.filter(
-          f => f.frameCategory === 'PRESCRIPTION'
+          f => f.frameType === 'PRESCRIPTION'
         );
 
         this.sunglassFrames = frames.filter(
-          f => f.frameCategory === 'SUNGLASS'
+          f => f.frameType === 'SUNGLASS'
         );
       },
       error: () => alert("Erro ao carregar armações.")
@@ -160,7 +160,7 @@ export class SaleFormPageComponent implements OnInit {
   cancelSaleItem() {
     this.saleItemForm.reset();
     this.selectedProductType = null;
-    this.selectedFrameCategory = null;
+    this.selectedFrameType = null;
     this.showSaleItemForm = false;
   }
 
@@ -182,7 +182,7 @@ export class SaleFormPageComponent implements OnInit {
 
     this.saleItemForm.reset();
     this.selectedProductType = null;
-    this.selectedFrameCategory = null;
+    this.selectedFrameType = null;
     this.showSaleItemForm = false;
 
   }
@@ -197,8 +197,8 @@ export class SaleFormPageComponent implements OnInit {
     this.selectedProductType = selectProductType ? (selectProductType as ProductType) : null;
   }
 
-  onFrameCategoryChange(selectedFrameCategory: string) {
-    this.selectedFrameCategory = selectedFrameCategory ? (selectedFrameCategory as FrameCategory) : null;
+  onFrameTypeChange(selectedFrameType: string) {
+    this.selectedFrameType = selectedFrameType ? (selectedFrameType as FrameType) : null;
   }
 
   clean() {
@@ -209,7 +209,7 @@ export class SaleFormPageComponent implements OnInit {
     }
     this.totalAmount = 0;
     this.selectedProductType = null;
-    this.selectedFrameCategory = null;
+    this.selectedFrameType = null;
     this.showSaleItemForm = false;
   }
 
@@ -290,10 +290,10 @@ export class SaleFormPageComponent implements OnInit {
   }
 
   get filteredFrameProducts() {
-    if (this.selectedFrameCategory === FrameCategory.Prescription) {
+    if (this.selectedFrameType === FrameType.Prescription) {
       return this.prescriptionFrames;
     }
-    if (this.selectedFrameCategory === FrameCategory.Sunglass) {
+    if (this.selectedFrameType === FrameType.Sunglass) {
       return this.sunglassFrames;
     }
     return [];
