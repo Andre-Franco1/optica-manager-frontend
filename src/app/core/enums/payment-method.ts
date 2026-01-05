@@ -1,13 +1,13 @@
 export enum PaymentMethod {
-    Cash = 'CASH',
-    CreditCard = 'CREDIT_CARD',
-    DebitCard = 'DEBIT_CARD',
-    Pix = 'PIX'
+    CASH = 'CASH',
+    CREDIT_CARD = 'CREDIT_CARD',
+    DEBIT_CARD = 'DEBIT_CARD',
+    PIX = 'PIX'
 }
 
 export const PaymentMethodLabels: Record<PaymentMethod, string> = {
-  [PaymentMethod.Cash]: 'Dinheiro',
-  [PaymentMethod.CreditCard]: 'Cartão de Crédito',
-  [PaymentMethod.DebitCard]: 'Cartão de Débito',
-  [PaymentMethod.Pix]: 'Pix'
+  [PaymentMethod.CASH]: 'Dinheiro',
+  [PaymentMethod.CREDIT_CARD]: 'Cartão de Crédito',
+  [PaymentMethod.DEBIT_CARD]: 'Cartão de Débito',
+  [PaymentMethod.PIX]: 'Pix'
 };

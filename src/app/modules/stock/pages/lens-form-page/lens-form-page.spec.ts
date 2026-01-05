@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LensPageComponent } from './lens-page';
+import { LensFormPage } from './lens-form-page';
 
-describe('LensPage', () => {
-  let component: LensPageComponent;
-  let fixture: ComponentFixture<LensPageComponent>;
+describe('LensFormPage', () => {
+  let component: LensFormPage;
+  let fixture: ComponentFixture<LensFormPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LensPageComponent]
+      imports: [LensFormPage]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LensPageComponent);
+    fixture = TestBed.createComponent(LensFormPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

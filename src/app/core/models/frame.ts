@@ -1,11 +1,11 @@
-import { FrameCategory } from "../enums/frame-category";
+import { FrameBrand } from "../enums/frame-brand";
+import { FrameType } from "../enums/frame-type";
 
 export interface Frame {
     id: number;
     code: string;
     name: string;
-    costPrice: number;
-    salePrice: number;
-    frameCategory?: FrameCategory;
+    frameBrand?: FrameBrand;
+    frameType?: FrameType;
     stockQuantity?: number;
 }

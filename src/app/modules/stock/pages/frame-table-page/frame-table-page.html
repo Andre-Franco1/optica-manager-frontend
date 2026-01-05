@@ -1,0 +1,66 @@
+<div class="container text-center">
+    <div class="display-6">
+        Lista de Armações:
+    </div>
+    <div class="border rounded shadow-sm p-4">
+        <div class="text-start">
+            <a routerLink="/frame-form" class="btn btn-primary">Cadastrar Armação</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Quantidade em estoque</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"><input class="form-control text-center" [(ngModel)]="nameFilter"
+                            (keyup)="filterByName()" placeholder="Filtrar por nome"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (frame of framePage.content; track frame.id){
+                <tr class="align-middle">
+                    <th scope="row">{{frame.id}}</th>
+                    <td>{{frame.code}}</td>
+                    <td>{{frame.name}}</td>
+                    <td>{{frame.frameBrand}}</td>
+                    <td>{{frame.frameType}}</td>
+                    <td>{{frame.stockQuantity}}</td>
+                    <td>
+                        <button type="button" class="btn icon-btn me-2" routerLink="/frame-form/{{frame.id}}">
+                            <img src="/assets/pencil-fill.svg" width="16" height="16" alt="editar">
+                        </button>
+                        <button type="button" class="btn icon-btn ms-2" (click)="delete(frame, modalConfirm)">
+                            <img src="/assets/trash3-fill.svg" width="16" height="16" alt="deletar">
+                        </button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="framePage.numberOfElements"
+            [(page)]="page" [boundaryLinks]="true" (pageChange)="pageChange()" />
+
+    </div>
+</div>
+
+<app-modal #modalConfirm [title]="'Deseja remover a armação?'">
+    @if (selectedFrame){
+    <ng-container>
+        Armação: <span class="fw-bold me-1">{{selectedFrame.name}}</span>
+    </ng-container>
+    }
+</app-modal>

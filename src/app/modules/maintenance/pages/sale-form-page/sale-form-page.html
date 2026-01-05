@@ -65,15 +65,15 @@
 
                                 @if (selectedProductType == 'FRAME'){
                                 <div class="col-12">
-                                    <label class="form-label">Categoria da armação:</label>
+                                    <label class="form-label">Tipo da armação:</label>
                                     <select class="form-select">
                                         <option>Selecione:</option>
-                                        <option (click)="onFrameCategoryChange('PRESCRIPTION')">Receituário</option>
-                                        <option (click)="onFrameCategoryChange('SUNGLASS')">Solar</option>
+                                        <option (click)="onFrameTypeChange('PRESCRIPTION')">Receituário</option>
+                                        <option (click)="onFrameTypeChange('SUNGLASS')">Solar</option>
                                     </select>
                                 </div>
                                 }
-                                @if (selectedFrameCategory){
+                                @if (selectedFrameType){
                                 <div class="col-12">
                                     <label class="form-label">Selecione a armação:</label>
                                     <select class="form-select" formControlName="product">

@@ -1,10 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { Client } from '../../../../core/models/client';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { ClientService } from '../../../../core/services/client';
 import { Location } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ClientService } from '../../../../core/services/client';
 import { ToastService } from '../../../../core/services/toast';
+import { FrameBrand, FrameBrandLabels } from '../../../../core/enums/frame-brand';
 
 @Component({
   selector: 'app-client-form-page',
@@ -13,8 +13,6 @@ import { ToastService } from '../../../../core/services/toast';
   styleUrl: './client-form-page.css',
 })
 export class ClientFormPageComponent implements OnInit {
-
-  clients: Client = {} as Client;
 
   isEditing: boolean = false;
 
