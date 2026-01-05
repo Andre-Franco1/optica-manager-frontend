@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
+import { LoginService } from '../../../core/services/login';
 
 @Component({
   selector: 'app-header',
@@ -9,16 +10,14 @@ import { RouterLink } from "@angular/router";
   styleUrl: './header.css',
 })
 export class HeaderComponent {
-  
-  getRealName(): string{
-    return "Usuário Teste";
+
+  constructor(private authService: LoginService, private router: Router) { }
+
+  getRealName(): string {
+    return sessionStorage.getItem('username') ?? '';
   }
 
-  isAdmin(): boolean{
-    return true;
-  }
-
-  logout(){
-    console.log("logout");
+  logout() {
+    this.authService.logout();
   }
 }
