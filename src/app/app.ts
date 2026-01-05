@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./shared/components/header/header";
 import { ToastComponent } from "./shared/components/toast/toast";
 
@@ -11,4 +11,6 @@ import { ToastComponent } from "./shared/components/toast/toast";
 })
 export class App {
   protected readonly title = signal('optica-manager-frontend');
+  constructor(public router: Router) {}
+
 }

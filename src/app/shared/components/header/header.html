@@ -37,11 +37,8 @@
 				</li>
             </ul>
             <div class="d-flex" role="logout">
-                <div class="my-auto me-4">
+                <div class="my-auto">Usuário: 
                     <span class="fw-bold me-2">{{getRealName()}}</span>
-                    @if (isAdmin()){
-                        <span>(admin)</span>
-                    }
                 </div>
                 <button class="btn btn-outline-secondary" type="submit" (click)="logout()">Sair</button>
             </div>
