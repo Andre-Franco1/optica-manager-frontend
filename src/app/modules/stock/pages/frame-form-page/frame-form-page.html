@@ -36,15 +36,15 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="frameBrand" class="form-label">Marca: </label>
-                                <select class="form-select" formControlName="frameBrand">
+                                <label for="brand" class="form-label">Marca: </label>
+                                <select class="form-select" formControlName="brand">
                                     @for(frameBrand of frameBrands; track frameBrand){
                                     <option [ngValue]="frameBrand">{{ frameBrandLabels[frameBrand] }}</option>
                                     }
                                 </select>
                                 @if (ngFrameForm.submitted){
                                 <div class="text-danger text-start">
-                                    @if (ffFrameBrand?.errors?.['required']) {
+                                    @if (ffBrand?.errors?.['required']) {
                                     <small><sup>*</sup>Marca é obrigatória!</small>
                                     }
                                 </div>
@@ -54,15 +54,15 @@
 
                         <div class="col-6">
                             <div class="mb-3">
-                                <label for="frameType" class="form-label">Tipo: </label>
-                                <select class="form-select" formControlName="frameType">
+                                <label for="type" class="form-label">Tipo: </label>
+                                <select class="form-select" formControlName="type">
                                     @for(frameType of frameTypes; track frameType){
                                     <option [ngValue]="frameType">{{ frameTypeLabels[frameType] }}</option>
                                     }
                                 </select>
                                 @if (ngFrameForm.submitted){
                                 <div class="text-danger text-start">
-                                    @if (ffFrameType?.errors?.['required']) {
+                                    @if (ffType?.errors?.['required']) {
                                     <small><sup>*</sup>Tipo é obrigatório!</small>
                                     }
                                 </div>

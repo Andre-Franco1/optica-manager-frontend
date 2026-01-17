@@ -5,7 +5,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { Page } from '../../../../core/models/page';
 import { Sale } from '../../../../core/models/sale';
 import { SaleService } from '../../../../core/services/sale';
-import { PaymentMethod, PaymentMethodLabels } from '../../../../core/enums/payment-method';
+import { PaymentMethodLabels } from '../../../../core/enums/payment-method';
 
 @Component({
   selector: 'app-sales-table-page',

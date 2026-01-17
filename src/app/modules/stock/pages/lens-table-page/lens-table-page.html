@@ -1,1 +1,71 @@
-<p>lens-table-page works!</p>
+<div class="container text-center">
+    <div class="display-6">
+        Lista de Lentes:
+    </div>
+    <div class="border rounded shadow-sm p-4">
+        <div class="text-start">
+            <a routerLink="/lens-form" class="btn btn-primary">Cadastrar Lente</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Índice</th>
+                    <th scope="col">Material</th> 
+                    <th scope="col">Tratamentos</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"><input class="form-control text-center" [(ngModel)]="nameFilter"
+                            (keyup)="filterByName()" placeholder="Filtrar por nome"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (lens of lensPage.content; track lens.id){
+                <tr class="align-middle">
+                    <th scope="row">{{lens.id}}</th>
+                    <td>{{lens.code}}</td>
+                    <td>{{lens.name}}</td>
+                    <td>{{lensBrandLabels[lens.brand]}}</td>
+                    <td>{{lensTypeLabels[lens.type]}}</td>
+                    <td>{{lensIndexLabels[lens.index]}}</td>
+                    <td>{{lensMaterialLabels[lens.material]}}</td>
+                    <td>{{ formatTreatments(lens.treatments) }}</td>
+                    <td>
+                        <button type="button" class="btn icon-btn me-2" routerLink="/lens-form/{{lens.id}}">
+                            <img src="/assets/pencil-fill.svg" width="16" height="16" alt="editar">
+                        </button>
+                        <button type="button" class="btn icon-btn ms-2" (click)="delete(lens, modalConfirm)">
+                            <img src="/assets/trash3-fill.svg" width="16" height="16" alt="deletar">
+                        </button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="lensPage.numberOfElements"
+            [(page)]="page" [boundaryLinks]="true" (pageChange)="pageChange()" />
+
+    </div>
+</div>
+
+<app-modal #modalConfirm [title]="'Deseja remover a armação?'">
+    @if (selectedLens){
+    <ng-container>
+        Armação: <span class="fw-bold me-1">{{selectedLens.name}}</span>
+    </ng-container>
+    }
+</app-modal>

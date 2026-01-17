@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink } from '@angular/router';
 import { ModalComponent } from '../../../../shared/components/modal/modal';
+import { FrameBrandLabels } from '../../../../core/enums/frame-brand';
+import { FrameTypeLabels } from '../../../../core/enums/frame-type';
 
 @Component({
   selector: 'app-frame-table-page',
@@ -21,6 +23,9 @@ export class FrameTablePageComponent implements OnInit {
 
   framePage: Page<Frame> = {} as Page<Frame>;
   page = 1;
+
+  frameBrandLabels = FrameBrandLabels;
+  frameTypeLabels = FrameTypeLabels;
 
   nameFilter: string = "";
   selectedFrame !: Frame;
@@ -44,22 +49,22 @@ export class FrameTablePageComponent implements OnInit {
   filterByName() {
     this.loadFrames();
   }
-  
+
   delete(frame: Frame, modalConfirm: ModalComponent) {
-      this.selectedFrame = frame;
-      modalConfirm.open().then(confirm => {
-        if (confirm) {
-          this.frameService.delete(frame).subscribe({
-            next: () => {
-              this.toastService.show("Armação removida com sucesso!", "bg-success text-light");
-              this.loadFrames();
-            },
-            error: () => {
-              this.toastService.show('Houve um erro ao remover a armação!', 'bg-danger text-light')
-            }
-          });
-        }
-      })
-  
-    }
+    this.selectedFrame = frame;
+    modalConfirm.open().then(confirm => {
+      if (confirm) {
+        this.frameService.delete(frame).subscribe({
+          next: () => {
+            this.toastService.show("Armação removida com sucesso!", "bg-success text-light");
+            this.loadFrames();
+          },
+          error: () => {
+            this.toastService.show('Houve um erro ao remover a armação!', 'bg-danger text-light')
+          }
+        });
+      }
+    })
+
+  }
 }

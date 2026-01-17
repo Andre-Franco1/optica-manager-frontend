@@ -1,13 +1,13 @@
 export enum FrameBrand {
-    Keen = 'KEEN',
-    Stylus = 'STYLUS',
-    Oakley = 'OAKLEY',
-    Rayban = 'RAYBAN'
+    KEEN = 'KEEN',
+    STYLUS = 'STYLUS',
+    OAKLEY = 'OAKLEY',
+    RAYBAN = 'RAYBAN'
 }
 
 export const FrameBrandLabels: Record<FrameBrand, string> = {
-  [FrameBrand.Keen]: 'Keen',
-  [FrameBrand.Stylus]: 'Stylus',
-  [FrameBrand.Oakley]: 'Oakley',
-  [FrameBrand.Rayban]: 'Ray-Ban'
+  [FrameBrand.KEEN]: 'Keen',
+  [FrameBrand.STYLUS]: 'Stylus',
+  [FrameBrand.OAKLEY]: 'Oakley',
+  [FrameBrand.RAYBAN]: 'Ray-Ban'
 };

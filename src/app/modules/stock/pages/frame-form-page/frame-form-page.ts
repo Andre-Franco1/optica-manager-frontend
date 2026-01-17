@@ -33,8 +33,8 @@ export class FrameFormPageComponent implements OnInit {
     id: [''],
     code: [''],
     name: ['', [Validators.required, Validators.minLength(3)]],
-    frameBrand: ['', [Validators.required]],
-    frameType: ['', [Validators.required]],
+    brand: ['', [Validators.required]],
+    type: ['', [Validators.required]],
   });
 
   ngOnInit(): void {
@@ -87,6 +87,6 @@ export class FrameFormPageComponent implements OnInit {
 
   get ffCode() { return this.frameForm.get("code") }
   get ffName() { return this.frameForm.get("name") }
-  get ffFrameBrand() { return this.frameForm.get("frameBrand") }
-  get ffFrameType() { return this.frameForm.get("frameType") }
+  get ffBrand() { return this.frameForm.get("brand") }
+  get ffType() { return this.frameForm.get("type") }
 }

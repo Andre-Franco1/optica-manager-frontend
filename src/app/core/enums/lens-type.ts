@@ -1,7 +1,11 @@
 export enum LensType {
     MONOFOCAL = 'MONOFOCAL',
     BIFOCAL = 'BIFOCAL',
-    PROGRESSIVE = 'PROGRESSIVE',
-    PHOTOCHROMIC = 'PHOTOCHROMIC',
-    ANTIREFLECTIVE = 'ANTIREFLECTIVE'
+    PROGRESSIVE = 'PROGRESSIVE'
 }
+
+export const LensTypeLabels: Record<LensType, string> = {
+  [LensType.MONOFOCAL]: 'Monofocal',
+  [LensType.BIFOCAL]: 'Bifocal',
+  [LensType.PROGRESSIVE]: 'Progressiva'
+};

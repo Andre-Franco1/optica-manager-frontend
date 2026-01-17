@@ -5,7 +5,7 @@ export interface Frame {
     id: number;
     code: string;
     name: string;
-    frameBrand?: FrameBrand;
-    frameType?: FrameType;
-    stockQuantity?: number;
+    brand: FrameBrand;
+    type: FrameType;
+    stockQuantity: number;
 }
