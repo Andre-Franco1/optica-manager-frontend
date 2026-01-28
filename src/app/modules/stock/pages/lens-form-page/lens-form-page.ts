@@ -9,10 +9,11 @@ import { LensType, LensTypeLabels } from '../../../../core/enums/lens-type';
 import { LensService } from '../../../../core/services/lens';
 import { ToastService } from '../../../../core/services/toast';
 import { LensTreatment, LensTreatmentLabels } from '../../../../core/enums/lens-treatment';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-lens-form-page',
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, NgSelectModule],
   templateUrl: './lens-form-page.html',
   styleUrl: './lens-form-page.css',
 })
@@ -35,6 +36,12 @@ export class LensFormPageComponent {
   lensMaterialLabels = LensMaterialLabels;
   lensTreatments = Object.values(LensTreatment);
   lensTreatmentLabels = LensTreatmentLabels;
+
+  lensTreatmentsSelect = Object.values(LensTreatment).map(treatment => ({
+  value: treatment,
+  label: LensTreatmentLabels[treatment]
+}));
+
 
   lensForm: FormGroup = this.formBuilder.group({
     id: [''],
@@ -87,7 +94,7 @@ export class LensFormPageComponent {
               this.toastService.show("Lente atualizada com sucesso!", "bg-success text-light");
               this.location.back();
             },
-            error: () => this.toastService.show('Houve um erro ao atualizar a lemnte!', 'bg-danger text-light')
+            error: () => this.toastService.show('Houve um erro ao atualizar a lente!', 'bg-danger text-light')
           }
         );
       }
@@ -115,6 +122,6 @@ export class LensFormPageComponent {
   get lfIndex() { return this.lensForm.get("index") }
   get lfMaterial() { return this.lensForm.get("material") }
   get lfType() { return this.lensForm.get("type") }
-  get lfTreatments() { return this.lensForm.get("treatments"); }
+  get lfTreatments() { return this.lensForm.get("treatments") }
 
 }

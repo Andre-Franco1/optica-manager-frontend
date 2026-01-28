@@ -119,24 +119,30 @@
                 </div>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Tratamentos</label>
+            <div class="row">
+                <div class="col-9 m-auto">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label class="form-label">Tratamentos:</label>
 
-                <div class="d-flex flex-wrap">
-                    @for(t of lensTreatments; track t){
-                    <div class="form-check me-3">
-                        <input type="checkbox" class="form-check-input"
-                            [checked]="lensForm.value.treatments.includes(t)" (change)="toggleTreatment(t)">
-                        <label class="form-check-label">{{ t }}</label>
+                                <ng-select formControlName="treatments" [items]="lensTreatmentsSelect" bindLabel="label" bindValue="value"
+                                    [multiple]="true" placeholder="Selecione os tratamentos">
+                                </ng-select>
+
+
+                                @if (ngLensForm.submitted) {
+                                <div class="text-danger">
+                                    @if (lensForm.get('treatments')?.errors?.['required']) {
+                                    <small><sup>*</sup>Selecione pelo menos um tratamento</small>
+                                    }
+                                </div>
+                                }
+                            </div>
+                        </div>
                     </div>
-                    }
-                </div>
 
-                @if (ngLensForm.submitted && lensForm.get('treatments')?.errors?.['required']){
-                <div class="text-danger text-start">
-                    <small><sup>*</sup>Selecione pelo menos um tratamento</small>
                 </div>
-                }
             </div>
 
 
