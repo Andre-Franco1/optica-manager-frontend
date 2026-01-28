@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LensTablePage } from './lens-table-page';
+import { LensTablePageComponent } from './lens-table-page';
 
 describe('LensTablePage', () => {
-  let component: LensTablePage;
-  let fixture: ComponentFixture<LensTablePage>;
+  let component: LensTablePageComponent;
+  let fixture: ComponentFixture<LensTablePageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LensTablePage]
+      imports: [LensTablePageComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LensTablePage);
+    fixture = TestBed.createComponent(LensTablePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

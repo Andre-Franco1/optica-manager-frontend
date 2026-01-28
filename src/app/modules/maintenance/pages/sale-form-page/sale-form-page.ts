@@ -38,8 +38,8 @@ export class SaleFormPageComponent implements OnInit {
   formBuilder = inject(FormBuilder);
   saleService = inject(SaleService);
   clientService = inject(ClientService);
-  frameService= inject(FrameService);
-  lensService= inject(LensService);
+  frameService = inject(FrameService);
+  lensService = inject(LensService);
   toastService = inject(ToastService);
   location = inject(Location);
   router = inject(ActivatedRoute);
@@ -88,7 +88,7 @@ export class SaleFormPageComponent implements OnInit {
       distinctUntilChanged(),
       filter(term => term.length >= 2),
       switchMap(term => this.clientService.getClientsByName(term)),
-      map( page => page.content || [])
+      map(page => page.content || [])
     );
   }
 
@@ -100,11 +100,11 @@ export class SaleFormPageComponent implements OnInit {
     this.frameService.getFrames().subscribe({
       next: frames => {
         this.prescriptionFrames = frames.filter(
-          f => f.frameType === 'PRESCRIPTION'
+          f => f.type === 'PRESCRIPTION'
         );
 
         this.sunglassFrames = frames.filter(
-          f => f.frameType === 'SUNGLASS'
+          f => f.type === 'SUNGLASS'
         );
       },
       error: () => alert("Erro ao carregar armações.")
@@ -239,12 +239,12 @@ export class SaleFormPageComponent implements OnInit {
 
   private createSaleObject(): Sale {
     let sale: Sale = {} as Sale;
-    sale = {...this.saleForm.value};
+    sale = { ...this.saleForm.value };
     sale.issueDate = new Date();
     sale.deliveryDate = null;
     sale.totalAmount = this.totalAmount;
     sale.saleStatus = SaleStatus.Pending;
-    sale.user = {id: 1};
+    sale.user = { id: 1 };
     //user, prescription
     return sale;
   }
