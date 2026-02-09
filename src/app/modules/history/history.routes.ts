@@ -1,8 +1,6 @@
 import { Routes } from '@angular/router';
-import { ClientHistoryComponent } from './pages/client-history/client-history';
-import { SaleHistoryComponent } from './pages/sale-history/sale-history';
+import { SalesHistoryTablePageComponent } from './pages/sales-history-table-page/sales-history-table-page';
 
 export const HISTORY_ROUTES: Routes = [
-  {path: 'client-history', component: ClientHistoryComponent},
-  {path: 'sale-history', component: SaleHistoryComponent}
+  {path: 'sales-history-table', component: SalesHistoryTablePageComponent}
 ];

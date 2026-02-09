@@ -1,0 +1,107 @@
+<div class="container text-center">
+    <div class="display-6">
+        Lista de Vendas Finalizadas:
+    </div>
+    <div class="border rounded shadow-sm p-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Data venda</th>
+                    <th scope="col">Metodo de pagamento</th>
+                    <th scope="col">Valor total</th>
+                    <th scope="col">Data entrega</th>
+                    <th scope="col">Ações</th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"><input class="form-control text-center" placeholder="Filtrar por nome"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (sale of salePage.content; track sale.id){
+                <tr class="align-middle">
+                    <th scope="row">{{sale.id}}</th>
+                    <td>{{sale.clientName}}</td>
+                    <td>{{sale.clientCpf}}</td>
+                    <td>{{sale.issueDate | date: "dd/MM/yyyy"}}</td>
+                    <td>{{paymentMethodLabels[sale.paymentMethod] }}</td>
+                    <td>R$ {{sale.totalAmount | number:'1.2-2'}}</td>
+                    <td>{{sale.estimatedDeliveryDate | date: "dd/MM/yyyy" }}</td>
+                    <td>
+                        <button type="button" class="btn icon-btn me-2" (click)="info(sale, modalInfo)">
+                            <img src="/assets/info-circle-fill.svg" width="16" height="16" alt="info">
+                        </button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="salePage.totalElements" [(page)]="page"
+            [boundaryLinks]="true" (pageChange)="pageChange()" />
+    </div>
+</div>
+
+<app-modal #modalInfo [title]="'Informações da venda'" [showFooter]="false">
+    @if (selectedSale){
+    <ng-container>
+        <div class="alert alert-secondary">
+            <div class="row">
+                <div class="col-4">Nome do cliente:</div>
+                <div class="col-8 fw-bold text-start">{{selectedSale.clientName}}</div>
+            </div>
+            <div class="row">
+                <div class="col-4">CPF do cliente:</div>
+                <div class="col-8 fw-bold">{{selectedSale.clientCpf}}</div>
+            </div>
+        </div>
+
+        <div class="alert alert-secondary">
+            <div class="row">
+                <div class="col-4">Data estimada de entrega:</div>
+                <div class="col-8 fw-bold">{{selectedSale.estimatedDeliveryDate | date: "dd/MM/yyyy"}}</div>
+            </div>
+            <div class="row">
+                <div class="col-4">Data de entrega:</div>
+                <div class="col-8 fw-bold">{{selectedSale.deliveryDate | date: "dd/MM/yyyy"}}</div>
+            </div>
+        </div>
+
+        <div class="alert alert-secondary">
+            <div class="row">
+                <div class="col-4">Método de pagamento:</div>
+                <div class="col-8 fw-bold">{{paymentMethodLabels[selectedSale.paymentMethod]}}</div>
+            </div>
+            @if (selectedSale.paymentMethod == 'CREDIT_CARD'){
+            <div class="row">
+                <div class="col-4">Bandeira do cartão:</div>
+                <div class="col-8 fw-bold">{{selectedSale.cardBrand}}</div>
+            </div>
+            <div class="row">
+                <div class="col-4">Número de parcelas:</div>
+                <div class="col-8 fw-bold">{{selectedSale.installments}}x</div>
+            </div>
+            }
+            <div class="row">
+                <div class="col-4">Preço total:</div>
+                <div class="col-8 fw-bold">R$ {{selectedSale.totalAmount | number:'1.2-2'}}</div>
+            </div>
+        </div>
+
+        <div class="alert alert-secondary">
+            <div class="row">
+                <div class="col-2">Comentário:</div>
+                <div class="col-10 fw-bold">{{selectedSale.comments}}</div>
+            </div>
+        </div>
+    </ng-container>
+    }
+</app-modal>

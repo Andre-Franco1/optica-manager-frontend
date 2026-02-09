@@ -52,7 +52,7 @@
                 }
             </tbody>
         </table>
-        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="salePage.numberOfElements"
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="salePage.totalElements"
             [(page)]="page" [boundaryLinks]="true" (pageChange)="pageChange()" />
     </div>
 </div>

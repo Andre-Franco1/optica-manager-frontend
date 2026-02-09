@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Lens } from '../models/lens';
 import { Observable } from 'rxjs';
 import { Page } from '../models/page';
+import { PaginationService } from './pagination';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +13,11 @@ export class LensService {
 
   baseUrl = environment.baseUrl + "/lenses";
 
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
+  private paginationService = inject(PaginationService);
 
   getLensesPage(lensNameFilter: string, page: number): Observable<Page<Lens>> {
-    let url = `${this.baseUrl}?name_like=${lensNameFilter}&_page=${page}&_limit=10&_sort=name`
+    let url = `${this.baseUrl}?name_like=${lensNameFilter}&page=${this.paginationService.toBackend(page)}&limit=10&sort=name`
     return this.http.get<Page<Lens>>(url);
   }
 

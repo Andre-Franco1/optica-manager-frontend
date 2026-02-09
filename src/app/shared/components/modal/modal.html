@@ -4,10 +4,13 @@
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.close(false)"></button>
 	</div>
 	<div class="modal-body">
-        <ng-content></ng-content>
+		<ng-content></ng-content>
 	</div>
+
+	@if (showFooter){
 	<div class="modal-footer">
 		<button type="button" class="btn btn-secondary" (click)="modal.close(false)">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="modal.close(true)">Confirmar</button>
+		<button type="button" class="btn btn-primary" (click)="modal.close(true)">Confirmar</button>
 	</div>
+	}
 </ng-template>

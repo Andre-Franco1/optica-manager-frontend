@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Frame } from '../models/frame';
 import { Page } from '../models/page';
+import { PaginationService } from './pagination';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +13,11 @@ export class FrameService {
 
   baseUrl = environment.baseUrl + "/frames";
 
-  constructor(private http: HttpClient) { }
+  private http = inject(HttpClient);
+  private paginationService = inject(PaginationService);
 
   getFramesPage(frameNameFilter: string, page: number): Observable<Page<Frame>> {
-    let url = `${this.baseUrl}?name_like=${frameNameFilter}&_page=${page}&_limit=10&_sort=name`
+    let url = `${this.baseUrl}?name_like=${frameNameFilter}&page=${this.paginationService.toBackend(page)}&limit=10&_sort=name`
     return this.http.get<Page<Frame>>(url);
   }
 
