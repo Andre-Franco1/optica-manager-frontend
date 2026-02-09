@@ -4,23 +4,26 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Client } from '../models/client';
 import { Page } from '../models/page';
+import { PaginationService } from './pagination';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class ClientService {
   
   baseUrl = environment.baseUrl + "/clients";
-
+  
   private http = inject(HttpClient);
+  private paginationService = inject(PaginationService);
 
   getClientsPage(clientNameFilter:string, page: number):Observable<Page<Client>>{
-    let url = `${this.baseUrl}?name_like=${clientNameFilter}&_page=${page}&_limit=10&_sort=name`
+    let url = `${this.baseUrl}?name_like=${clientNameFilter}&page=${this.paginationService.toBackend(page)}&limit=10&sort=name`
     return this.http.get<Page<Client>>(url);
   }
   
   getClientsByName(clientNameFilter: string):Observable<Page<Client>>{
-    let url = `${this.baseUrl}?name_like=${clientNameFilter}&_limit=10`;
+    let url = `${this.baseUrl}?name_like=${clientNameFilter}&limit=10`;
     return this.http.get<Page<Client>>(url);
   }
 

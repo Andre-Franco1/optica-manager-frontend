@@ -11,6 +11,9 @@ export class ModalComponent {
 
   @Input()
   title !: string;
+  
+  @Input() 
+  showFooter = true;
 
   @ViewChild("modal")
   private modalContent !: TemplateRef<ModalComponent>;
