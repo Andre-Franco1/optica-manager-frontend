@@ -39,6 +39,10 @@
                         <button type="button" class="btn icon-btn ms-2" (click)="delete(client, modalConfirm)">
                             <img src="/assets/trash3-fill.svg" width="16" height="16" alt="deletar">
                         </button>
+
+                        <button type="button" class="btn icon-btn ms-2" (click)="prescription(client, modalPrescription)">
+                            <img src="/assets/eyeglasses.svg" width="16" height="16" alt="receita">
+                        </button>
                     </td>
                 </tr>
                 }
@@ -56,5 +60,13 @@
     <ng-container>
         Nome: <span class="fw-bold me-1">{{selectedClient.name}}</span>
     </ng-container>
+    }
+</app-modal>
+
+<app-modal #modalPrescription [title]="'Receituário'" [showFooter]="false">
+    @if (selectedClient){
+    <app-prescription-table-page [clientId]="selectedClient.id">
+        
+    </app-prescription-table-page>
     }
 </app-modal>

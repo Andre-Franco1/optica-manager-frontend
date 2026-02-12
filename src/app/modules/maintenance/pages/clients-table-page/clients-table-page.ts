@@ -7,10 +7,11 @@ import { Page } from '../../../../core/models/page';
 import { RouterLink } from "@angular/router";
 import { ToastService } from '../../../../core/services/toast';
 import { ModalComponent } from '../../../../shared/components/modal/modal';
+import { PrescriptionTablePageComponent } from '../prescription-table-page/prescription-table-page';
 
 @Component({
   selector: 'app-clients-table-page',
-  imports: [FormsModule, NgbPaginationModule, RouterLink, ModalComponent],
+  imports: [FormsModule, NgbPaginationModule, RouterLink, ModalComponent, PrescriptionTablePageComponent],
   templateUrl: './clients-table-page.html',
   styleUrl: './clients-table-page.css',
 })
@@ -48,6 +49,24 @@ export class ClientsTablePageComponent implements OnInit {
   delete(client: Client, modalConfirm: ModalComponent) {
     this.selectedClient = client;
     modalConfirm.open().then(confirm => {
+      if (confirm) {
+        this.clientService.delete(client).subscribe({
+          next: () => {
+            this.toastService.show("Cliente removido com sucesso!", "bg-success text-light");
+            this.loadClients();
+          },
+          error: () => {
+            this.toastService.show('Houve um erro ao remover o cliente!', 'bg-danger text-light')
+          }
+        });
+      }
+    })
+
+  }
+
+  prescription(client: Client, modalPrescription: ModalComponent) {
+    this.selectedClient = client;
+    modalPrescription.open({ size: "xl" }).then(confirm => {
       if (confirm) {
         this.clientService.delete(client).subscribe({
           next: () => {
