@@ -26,7 +26,9 @@ export interface Sale {
     clientCpf: string
     
 
-    prescription: Prescription | null;
+    prescriptionId: number | null;
+    prescriptionDate: Date | null;
+    prescriptionOphthalmologistName: string | null;  
 
     user: {id : number};
 

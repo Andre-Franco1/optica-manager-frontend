@@ -20,6 +20,8 @@ import { SaleService } from '../../../../core/services/sale';
 import { ToastService } from '../../../../core/services/toast';
 import { ModalComponent } from '../../../../shared/components/modal/modal';
 import { DecimalPipe } from '@angular/common';
+import { Prescription } from '../../../../core/models/prescription';
+import { PrescriptionService } from '../../../../core/services/prescription';
 @Component({
   selector: 'app-sale-form-page',
   imports: [ReactiveFormsModule, FormsModule, NgbTypeahead, ModalComponent, DatePipe, DecimalPipe],
@@ -35,16 +37,17 @@ export class SaleFormPageComponent implements OnInit {
   prescriptionFrames: Frame[] = [];
   sunglassFrames: Frame[] = [];
 
-  formBuilder = inject(FormBuilder);
-  saleService = inject(SaleService);
-  clientService = inject(ClientService);
-  frameService = inject(FrameService);
-  lensService = inject(LensService);
-  toastService = inject(ToastService);
-  location = inject(Location);
-  router = inject(ActivatedRoute);
-  jsonPipe = inject(JsonPipe);
-  cd = inject(ChangeDetectorRef);
+  private formBuilder = inject(FormBuilder);
+  private saleService = inject(SaleService);
+  private clientService = inject(ClientService);
+  private frameService = inject(FrameService);
+  private lensService = inject(LensService);
+  private toastService = inject(ToastService);
+  private location = inject(Location);
+  private router = inject(ActivatedRoute);
+  private jsonPipe = inject(JsonPipe);
+  private cd = inject(ChangeDetectorRef);
+  private prescriptionService = inject(PrescriptionService);
 
   productTypes = Object.values(ProductType);
   paymentMethods = Object.values(PaymentMethod);
@@ -56,11 +59,15 @@ export class SaleFormPageComponent implements OnInit {
 
   totalAmount: number = 0;
 
+  prescriptions: Prescription[] = [];
+  selectedPrescription?: Prescription;
+
   selectedProductType: ProductType | null = null;
   selectedFrameType: FrameType | null = null;
 
   saleForm: FormGroup = this.formBuilder.group({
     client: ['', Validators.required],
+    prescriptionId: [null],
     saleItems: this.formBuilder.array([]),
     estimatedDeliveryDate: ['', Validators.required],
     paymentMethod: ['', Validators.required],
@@ -80,6 +87,22 @@ export class SaleFormPageComponent implements OnInit {
   ngOnInit(): void {
     this.loadFrames();
     this.loadLenses();
+
+    this.saleForm.get('client')?.valueChanges.subscribe(value => {
+
+    // Se for um objeto (cliente selecionado)
+    if (value && typeof value === 'object' && value.id) {
+
+      this.loadPrescriptions(value.id);
+
+    } else {
+      // Se o usuário apagou ou digitou algo manualmente
+      this.prescriptions = [];
+      this.saleForm.patchValue({ prescriptionId: null });
+    }
+
+  });
+
   }
 
   searchClients = (text: Observable<string>): Observable<Client[]> => {
@@ -119,6 +142,22 @@ export class SaleFormPageComponent implements OnInit {
       error: () => alert("Erro ao carregar lentes.")
     });
   }
+
+  loadPrescriptions(clientId: number): void {
+
+  this.prescriptionService
+    .getByClient(clientId).subscribe({
+      next: (data) => {
+        this.prescriptions = data;
+      },
+      error: (err) => {
+        console.error('Erro ao carregar receitas', err);
+      }
+    });
+
+}
+
+
 
   onPaymentMethodChange() {
     const paymentMethod = this.saleForm.get('paymentMethod')!.value;
@@ -178,7 +217,7 @@ export class SaleFormPageComponent implements OnInit {
     }));
 
     this.calculateTotal();
-    alert(this.jsonPipe.transform(this.saleItems.value));
+    // alert(this.jsonPipe.transform(this.saleItems.value));
 
     this.saleItemForm.reset();
     this.selectedProductType = null;
@@ -263,6 +302,10 @@ export class SaleFormPageComponent implements OnInit {
 
   get sfClient() {
     return this.saleForm.get('client');
+  }
+
+  get sfPrescription() {
+    return this.saleForm.get('prescriptionId');
   }
 
   get saleItems() {

@@ -1,0 +1,17 @@
+.icon-btn {
+    padding: 6px;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid #000;
+    background-color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.icon-btn:hover {
+    background-color: #f0f0f0;
+}
