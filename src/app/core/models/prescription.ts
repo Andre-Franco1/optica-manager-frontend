@@ -2,16 +2,37 @@ export interface Prescription {
   id: number;
   date: Date;
 
-  odSphere: number;
-  odCylinder: number | null;
-  odAxis: number | null;
+  distanceOdSpherical: number;
+  distanceOdCylindrical: number;
+  distanceOdAxis: number;
+  distanceOdDnp: number;
+  distanceOdAddition: number;
 
-  osSphere: number;
-  osCylinder: number | null;
-  osAxis: number | null;
+  distanceOsSpherical: number;
+  distanceOsCylindrical: number;
+  distanceOsAxis: number;
+  distanceOsDnp: number;
+  distanceOsAddition: number;
+  
+  distanceDp: number;
 
-  addition: number | null;
+  nearOdSpherical: number;
+  nearOdCylindrical: number;
+  nearOdAxis: number;
+  nearOdDnp: number;
+  nearOdHeight: number;
+
+  nearOsSpherical: number;
+  nearOsCylindrical: number;
+  nearOsAxis: number;
+  nearOsDnp: number;
+  nearOsHeight: number;
+  
+  nearDp: number;
+
   notes: string;
 
   clientId: number;
+  ophthalmologistId: number;
+  ophthalmologistName: string;
 }
