@@ -30,9 +30,9 @@ export class FrameService {
     return this.http.get<Frame>(url);
   }
 
-  save(frame: Frame): Observable<void>{
-      return this.http.post<void>(this.baseUrl, frame);
-    }
+  save(frame: Frame): Observable<void> {
+    return this.http.post<void>(this.baseUrl, frame);
+  }
 
   update(frame: Frame): Observable<void> {
     let url = `${this.baseUrl}/${frame.id}`;
