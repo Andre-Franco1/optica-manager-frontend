@@ -38,8 +38,14 @@
                     <td>{{frameTypeLabels[frame.type]}}</td>
                     <td>{{frame.stockQuantity}} unidade(s)</td>
                     <td>
-                        <button type="button" class="btn icon-btn me-2" routerLink="/frame-form/{{frame.id}}">
+                        <button type="button" class="btn icon-btn ms-2" routerLink="/frame-form/{{frame.id}}">
                             <img src="/assets/pencil-fill.svg" width="16" height="16" alt="editar">
+                        </button>
+                        <button type="button" class="btn icon-btn ms-2" (click)="stock(frame, stockMovementTypes.ENTRY, modalStock)">
+                            <img src="/assets/plus-lg.svg" width="16" height="16" alt="adicionar quantidade em estoque">
+                        </button>
+                        <button type="button" class="btn icon-btn ms-2" (click)="stock(frame, stockMovementTypes.EXIT, modalStock)">
+                            <img src="/assets/dash-lg.svg" width="16" height="16" alt="subtrair quantidade em estoque">
                         </button>
                         <button type="button" class="btn icon-btn ms-2" (click)="delete(frame, modalConfirm)">
                             <img src="/assets/trash3-fill.svg" width="16" height="16" alt="deletar">
@@ -50,8 +56,8 @@
             </tbody>
         </table>
 
-        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="framePage.totalElements"
-            [(page)]="page" [boundaryLinks]="true" (pageChange)="pageChange()" />
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="framePage.totalElements" [(page)]="page"
+            [boundaryLinks]="true" (pageChange)="pageChange()" />
 
     </div>
 </div>
@@ -60,6 +66,38 @@
     @if (selectedFrame){
     <ng-container>
         Armação: <span class="fw-bold me-1">{{selectedFrame.name}}</span>
+    </ng-container>
+    }
+</app-modal>
+
+<app-modal #modalStock [title]="modalTitle">
+    @if (selectedFrame) {
+    <ng-container>
+
+        <div class="mb-3">
+            <span class="fw-semibold">Armação:</span>
+            <span class="fw-bold ms-1">{{ selectedFrame.name }}</span>
+        </div>
+
+        <form [formGroup]="stockForm">
+            <div class="mb-3">
+                <label class="form-label">Quantidade</label>
+                <input type="number" class="form-control" formControlName="quantity" min="1"
+                    placeholder="Digite a quantidade" />
+
+                @if (stockForm.get('quantity')?.invalid && stockForm.get('quantity')?.touched) {
+                <small class="text-danger">
+                    Quantidade deve ser maior que zero
+                </small>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Comentário</label>
+                <textarea class="form-control" rows="3" formControlName="comment"
+                    placeholder="Descreva o motivo da movimentação"></textarea>
+            </div>
+        </form>
     </ng-container>
     }
 </app-modal>
