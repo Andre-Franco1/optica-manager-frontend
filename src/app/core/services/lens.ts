@@ -17,7 +17,7 @@ export class LensService {
   private paginationService = inject(PaginationService);
 
   getLensesPage(lensNameFilter: string, page: number): Observable<Page<Lens>> {
-    let url = `${this.baseUrl}?name_like=${lensNameFilter}&page=${this.paginationService.toBackend(page)}&limit=10&sort=name`
+    let url = `${this.baseUrl}?name_like=${lensNameFilter}&page=${this.paginationService.toBackend(page)}&size=10&sort=name`
     return this.http.get<Page<Lens>>(url);
   }
 

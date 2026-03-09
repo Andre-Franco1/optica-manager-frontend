@@ -17,7 +17,7 @@ export class FrameService {
   private paginationService = inject(PaginationService);
 
   getFramesPage(frameNameFilter: string, page: number): Observable<Page<Frame>> {
-    let url = `${this.baseUrl}?name_like=${frameNameFilter}&page=${this.paginationService.toBackend(page)}&limit=10&_sort=name`
+    let url = `${this.baseUrl}?name_like=${frameNameFilter}&page=${this.paginationService.toBackend(page)}&size=10&_sort=name`
     return this.http.get<Page<Frame>>(url);
   }
 
