@@ -5,6 +5,8 @@ import { PrescriptionService } from '../../../../core/services/prescription';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastService } from '../../../../core/services/toast';
+import { Ophthalmologist } from '../../../../core/models/ophthalmologist';
+import { OphthalmologistService } from '../../../../core/services/ophthalmologist';
 
 @Component({
   selector: 'app-prescription-table-page',
@@ -17,22 +19,19 @@ export class PrescriptionTablePageComponent {
   @Input() clientId!: number;
 
   prescriptions: Prescription[] = [];
-  ophthalmologists = [
-    { id: 1, name: 'Dr. Carlos Silva' },
-    { id: 2, name: 'Dra. Mariana Souza' },
-    { id: 3, name: 'Dr. Rafael Almeida' }
-  ];
+  ophthalmologists: Ophthalmologist[] = [];
 
   showPrescriptionForm = false;
 
   prescriptionForm: FormGroup;
 
-  toastService = inject(ToastService);
-  location = inject(Location);
+  private toastService = inject(ToastService);
+  private location = inject(Location);
 
   constructor(
     private fb: FormBuilder,
-    private prescriptionService: PrescriptionService) {
+    private prescriptionService: PrescriptionService,
+    private ophthalmologistService: OphthalmologistService) {
     this.prescriptionForm = this.fb.group({
       date: [null],
 
@@ -76,6 +75,7 @@ export class PrescriptionTablePageComponent {
 
   ngOnInit() {
     this.loadPrescriptions();
+    this.loadOphthalmologists();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -84,6 +84,14 @@ export class PrescriptionTablePageComponent {
       this.showPrescriptionForm = false;
 
     }
+  }
+  
+  loadOphthalmologists() {
+    this.ophthalmologistService.getOphthalmologists().subscribe({
+      next: response => {
+        this.ophthalmologists = response;
+      }
+    });
   }
 
   loadPrescriptions() {

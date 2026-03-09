@@ -40,12 +40,8 @@
                     <td>R$ {{sale.totalAmount | number:'1.2-2'}}</td>
                     <td>{{sale.estimatedDeliveryDate | date: "dd/MM/yyyy" }}</td>
                     <td>
-                        <button type="button" class="btn icon-btn ms-2">
-                            <img src="/assets/pencil-fill.svg" width="16" height="16" alt="editar">
-                        </button>
-
-                        <button type="button" class="btn icon-btn ms-2">
-                            <img src="/assets/trash3-fill.svg" width="16" height="16" alt="deletar">
+                        <button type="button" class="btn icon-btn ms-2" (click)="downloadServiceOrder(sale.id)">
+                            <img src="/assets/file-earmark-spreadsheet-fill.svg" width="16" height="16" alt="imprimir ordem de serviço">
                         </button>
                     </td>
                 </tr>
